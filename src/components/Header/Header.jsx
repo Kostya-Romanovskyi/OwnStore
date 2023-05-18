@@ -10,7 +10,16 @@ import {
     NavList,
     NavItem,
     HeaderContainer,
+    Navigation,
+    BurgerButton,
+    NavLink,
+    AuthWrapp,
+    AuthLogIn,
+    AuthRegister
 } from "../Header.styled";
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { TfiClose } from 'react-icons/tfi';
+
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -26,41 +35,40 @@ const Header = () => {
                         <img src={Logo} alt="Logo" />
                         <LogoText>ownCINEMA</LogoText>
                     </LogoWrapper>
-                    <button onClick={handleToggle} type="button">
-                        burg
-                    </button>
+                    <BurgerButton onClick={handleToggle} type="button">
+                        {isOpen ? <TfiClose size={24} /> : <RxHamburgerMenu size={24} />}
+                    </BurgerButton>
                     <MobileWrapp open={isOpen}>
-                        <button onClick={handleToggle} type="button">
-                            ex
-                        </button>
-                        <nav>
+                        <Navigation>
                             <NavList>
                                 <NavItem>
-                                    <Link onClick={handleToggle} to="/search">
+                                    <NavLink onClick={handleToggle} to="/search">
                                         Search
-                                    </Link>
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <Link onClick={handleToggle} to="/favorite">
+                                    <NavLink onClick={handleToggle} to="/favorite">
                                         Favorite
-                                    </Link>
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <Link onClick={handleToggle} to="/library">
+                                    <NavLink onClick={handleToggle} to="/library">
                                         Library
-                                    </Link>
+                                    </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <Link onClick={handleToggle} to="/about">
+                                    <NavLink onClick={handleToggle} to="/about">
                                         About us
-                                    </Link>
+                                    </NavLink>
                                 </NavItem>
                             </NavList>
-                        </nav>
-                        <div>
-                            <button type="button">Log In</button>
-                            <button type="button">Register</button>
-                        </div>
+
+                        </Navigation>
+                        <AuthWrapp>
+                            <AuthLogIn type="button">Log In</AuthLogIn>
+                            <AuthRegister type="button">Register</AuthRegister>
+                        </AuthWrapp>
+
                     </MobileWrapp>
                 </HeaderContainer>
             </HeaderBackground>
