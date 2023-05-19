@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 export const MainContainer = styled.div`
   position: relative;
 
+  margin: 0 auto;
+  padding: 0px 8px 0px 8px;
   @media screen and (min-width: 420px) {
     max-width: 420px;
   }
@@ -37,6 +39,8 @@ export const MainTitle = styled.h1`
   line-height: 1.25;
 
   text-align: center;
+
+  margin-bottom: 20px;
 
   letter-spacing: -0.014em;
 

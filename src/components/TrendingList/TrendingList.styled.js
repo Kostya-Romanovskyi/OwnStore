@@ -20,6 +20,18 @@ export const ListItem = styled.li`
   }
 `;
 
+export const PopularMovies = styled.h2`
+  font-family: "Outfit", sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  /* line-height: 0.5rem; */
+
+  letter-spacing: -0.014em;
+  margin-bottom: 10px;
+
+  color: rgba(231, 231, 231, 0.24);
+`;
+
 export const Poster = styled.img`
   width: 90%;
   height: auto;

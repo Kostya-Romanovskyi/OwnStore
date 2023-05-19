@@ -5,6 +5,8 @@ export const HeaderBackground = styled.header`
   position: relative;
   background-color: #04011c;
   box-shadow: 0px 20px 40px rgba(205, 28, 104, 0.08);
+
+  margin-bottom: 100px;
 `;
 
 export const HeaderContainer = styled.div`
