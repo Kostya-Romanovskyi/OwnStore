@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useSelector, useDispatch } from 'react-redux'
-import { getTrendingMovies } from "../../APIs/GetTrends"
+import { getTrendingMovies } from "../../APIs/GetMoviesLists"
 import { trendingMovies } from "../../Redux/TrendingMoviesSlice/TrendingMoviesSlice"
 import { PopularMovies, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./TrendingList.styled"
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,6 +13,7 @@ import './SwiperStyle.css';
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
 const TrendingList = () => {
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
     const onAutoplayTimeLeft = (s, time, progress) => {
@@ -23,19 +24,52 @@ const TrendingList = () => {
     const trendingMoviesSel = useSelector(trendingMovies)
     console.log(trendingMoviesSel)
 
+    const debounce = (func, delay) => {
+        let timeoutId;
+
+        return function (...args) {
+            clearTimeout(timeoutId);
+
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+            }, delay);
+        };
+    }
+
+    const truncateString = (str, maxLength) => {
+        if (str.length > maxLength) {
+            return str.substring(0, maxLength) + "...";
+        } else {
+            return str;
+        }
+    }
+
     const dispatch = useDispatch()
 
     useEffect(() => {
 
         dispatch(getTrendingMovies());
 
+
+        const handleResize = debounce(() => {
+            setScreenWidth(window.innerWidth);
+        }, 300);
+
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
     }, [dispatch]);
+
 
     return (
         <>
             <PopularMovies>Popular now</PopularMovies>
-            <Swiper spaceBetween={50}
-                centeredSlides={true}
+            <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
+                slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
                 autoplay={{
                     delay: 5000,
                     disableOnInteraction: false,
@@ -56,7 +90,7 @@ const TrendingList = () => {
                             <Poster src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
                             <Container>
                                 <FlexWrapp>
-                                    <TitleFilm>{title}</TitleFilm>
+                                    <TitleFilm>{truncateString(title, 15)}</TitleFilm>
                                     <Statistic>{vote_average}</Statistic>
                                 </FlexWrapp>
                                 <FlexWrapp>

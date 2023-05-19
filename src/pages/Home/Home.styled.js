@@ -9,8 +9,8 @@ export const MainContainer = styled.div`
     max-width: 420px;
   }
 
-  @media screen and (min-width: 768px) {
-    max-width: 768px;
+  @media screen and (min-width: 767px) {
+    max-width: 767px;
     padding: 30px 12px 30px 12px;
   }
 

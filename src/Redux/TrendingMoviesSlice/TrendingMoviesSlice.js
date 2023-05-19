@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTrendingMovies } from "../../APIs/GetTrends";
+import { getTrendingMovies } from "../../APIs/GetMoviesLists";
 
 export const trendingMoviesSlice = createSlice({
   name: "trendingMovies",
