@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react"
 import { useSelector, useDispatch } from 'react-redux'
-import { getTrendingMovies } from "../../APIs/GetMoviesLists"
-import { trendingMovies } from "../../Redux/TrendingMoviesSlice/TrendingMoviesSlice"
-import { PopularMovies, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./TrendingList.styled"
+import { getPopularMovies } from "../../APIs/GetMoviesLists"
+import { popularMovies } from "../../Redux/Slices/PopularMoviesSlice"
+import { PopularMovies, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./PopularList.styled"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/css';
@@ -12,7 +12,7 @@ import './SwiperStyle.css';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
-const TrendingList = () => {
+const PopularList = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
@@ -21,8 +21,7 @@ const TrendingList = () => {
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     }
 
-    const trendingMoviesSel = useSelector(trendingMovies)
-    console.log(trendingMoviesSel)
+    const trendingMoviesSel = useSelector(popularMovies)
 
     const debounce = (func, delay) => {
         let timeoutId;
@@ -48,7 +47,7 @@ const TrendingList = () => {
 
     useEffect(() => {
 
-        dispatch(getTrendingMovies());
+        dispatch(getPopularMovies());
 
 
         const handleResize = debounce(() => {
@@ -67,7 +66,7 @@ const TrendingList = () => {
 
     return (
         <>
-            <PopularMovies>Popular now</PopularMovies>
+            <PopularMovies>Popular now <span>watch all</span></PopularMovies>
             <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
                 slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
                 autoplay={{
@@ -112,4 +111,4 @@ const TrendingList = () => {
     )
 }
 
-export default TrendingList;
+export default PopularList;

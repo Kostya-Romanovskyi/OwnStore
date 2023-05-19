@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import trendingMoviesSlice from "./TrendingMoviesSlice/TrendingMoviesSlice";
+import popularMoviesSlice from "./Slices/PopularMoviesSlice";
+import upcomingMoviesSlice from "./Slices/UpcomingMoviesSlice";
 
 export default configureStore({
   reducer: {
-    trendingMovies: trendingMoviesSlice,
+    popularMovies: popularMoviesSlice,
+    upcomingMovies: upcomingMoviesSlice,
   },
   middleware: [thunk],
 });

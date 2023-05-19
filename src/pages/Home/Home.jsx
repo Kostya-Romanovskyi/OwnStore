@@ -1,4 +1,6 @@
-import TrendingList from "../../components/TrendingList/TrendingList"
+// import TrendingList from "../../components/TrendingList/TrendingList"
+import PopularList from "../../components/PopularList/PopularList"
+import UpcomingList from "../../components/UpcomingList/UpcomingList"
 import { MainContainer, MainTitle, DecorateTitle, DecorateSircle } from "./Home.styled"
 const Home = () => {
     return (
@@ -6,7 +8,8 @@ const Home = () => {
             <MainContainer>
                 <MainTitle>Movies for <DecorateTitle>all</DecorateTitle></MainTitle>
                 <DecorateSircle></DecorateSircle>
-                <TrendingList />
+                <PopularList />
+                <UpcomingList />
             </MainContainer>
         </main>
     )
