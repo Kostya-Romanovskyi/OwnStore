@@ -16,7 +16,7 @@ import {
     AuthWrapp,
     AuthLogIn,
     AuthRegister
-} from "../Header.styled";
+} from "../Header/Header.styled";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { TfiClose } from 'react-icons/tfi';
 
@@ -72,6 +72,7 @@ const Header = () => {
                     </MobileWrapp>
                 </HeaderContainer>
             </HeaderBackground>
+
             <Outlet />
         </>
     );
