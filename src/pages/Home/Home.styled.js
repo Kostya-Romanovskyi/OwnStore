@@ -40,7 +40,7 @@ export const MainTitle = styled.h1`
 
   text-align: center;
 
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   letter-spacing: -0.014em;
 

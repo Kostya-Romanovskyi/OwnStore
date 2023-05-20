@@ -1,11 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 // import { Suspense } from "react"
-import Logo from "../../assets/Logo.png";
+import Logo from "../../assets/Logo-test.png";
 import {
     HeaderBackground,
     LogoWrapper,
+    LogoImg,
     LogoText,
+    Cinema,
     MobileWrapp,
     NavList,
     NavItem,
@@ -32,8 +34,8 @@ const Header = () => {
             <HeaderBackground>
                 <HeaderContainer>
                     <LogoWrapper as={Link} to="/">
-                        <img src={Logo} alt="Logo" />
-                        <LogoText>ownCINEMA</LogoText>
+                        <LogoImg src={Logo} alt="Logo" />
+                        <LogoText>own<Cinema>CINEMA</Cinema></LogoText>
                     </LogoWrapper>
                     <BurgerButton onClick={handleToggle} type="button">
                         {isOpen ? <TfiClose size={24} /> : <RxHamburgerMenu size={24} />}

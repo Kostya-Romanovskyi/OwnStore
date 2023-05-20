@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUpcomingMovies } from "../../APIs/GetMoviesLists"
 import { upcomingMovies } from "../../Redux/Slices/UpcomingMoviesSlice"
 // import { Grid, Cell } from 'react-grid-system';
-import { UpcomingMovies, ListWrapper, Item1, Item2, Item3, SpecialTitleWrapp, Poster, InfoWrapp, TitleWrapp, Title, Overview, StatWrapp, Date, Vote, LikeButton } from "./UpcomingList.styled"
+import { UpcomingMovies, WatchAll, ListWrapper, Item1, Item2, Item3, SpecialTitleWrapp, Poster, InfoWrapp, TitleWrapp, Title, Overview, StatWrapp, Date, Vote, LikeButton } from "./UpcomingList.styled"
 
 
 const UpcomingList = () => {
@@ -63,7 +63,7 @@ const UpcomingList = () => {
 
     return (
         <>
-            <UpcomingMovies>Upcoming movies watch all</UpcomingMovies>
+            <UpcomingMovies>Upcoming movies <WatchAll>watch all</WatchAll> </UpcomingMovies>
             <ListWrapper>
                 {/* {threeEl && threeEl.map(({ id, title, release_date, vote_average, backdrop_path
                 }) => {

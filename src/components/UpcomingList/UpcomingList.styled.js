@@ -11,6 +11,15 @@ export const UpcomingMovies = styled.h2`
   color: rgba(231, 231, 231, 0.24);
 `;
 
+export const WatchAll = styled.span`
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  text-transform: uppercase;
+
+  color: rgba(224, 30, 90, 0.5);
+`;
+
 export const ListWrapper = styled.ul`
   margin-bottom: 35px;
 
@@ -99,6 +108,10 @@ export const Poster = styled.img`
   height: auto;
 
   border-radius: 8px;
+
+  @media screen and (min-width: 1200px) {
+    width: 125px;
+  }
 `;
 
 export const InfoWrapp = styled.div`
@@ -137,7 +150,12 @@ export const TitleWrapp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+
+  @media screen and (min-width: 1200px) {
+    padding-top: 3px;
+    margin-bottom: 30px;
+  }
 `;
 
 export const SpecialTitleWrapp = styled(TitleWrapp)`
@@ -145,10 +163,15 @@ export const SpecialTitleWrapp = styled(TitleWrapp)`
   justify-content: space-between;
   align-items: center;
 
-  padding-top: 7px;
+  margin-bottom: 5px;
 
   @media screen and (min-width: 768px) {
-    /* margin-bottom: 42%; */
+    margin-bottom: 17px;
+    padding-top: 7px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 30px;
   }
 `;
 
@@ -163,4 +186,8 @@ export const Overview = styled.p`
   margin-bottom: 20px;
 
   color: #c0c0c0;
+
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 60px;
+  }
 `;

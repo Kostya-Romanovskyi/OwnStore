@@ -32,6 +32,15 @@ export const PopularMovies = styled.h2`
   color: rgba(231, 231, 231, 0.24);
 `;
 
+export const WatchAll = styled.span`
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  text-transform: uppercase;
+
+  color: rgba(224, 30, 90, 0.5);
+`;
+
 export const Poster = styled.img`
   width: 90%;
   height: auto;

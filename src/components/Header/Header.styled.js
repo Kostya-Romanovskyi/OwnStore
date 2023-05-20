@@ -6,7 +6,7 @@ export const HeaderBackground = styled.header`
   background-color: #04011c;
   box-shadow: 0px 20px 40px rgba(205, 28, 104, 0.08);
 
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -22,18 +22,25 @@ export const HeaderContainer = styled.div`
 
   @media screen and (min-width: 767px) {
     max-width: 768px;
-    padding: 30px 12px 30px 12px;
+    padding: 20px 12px 20px 12px;
   }
 
   @media screen and (min-width: 1200px) {
     max-width: 1200px;
-    padding: 40px 16px 40px 16px;
+    padding: 20px 16px 20px 16px;
   }
 `;
 
 export const LogoWrapper = styled.header`
   display: flex;
   align-items: center;
+
+  text-decoration: none;
+`;
+
+export const LogoImg = styled.img`
+  width: 30px;
+  height: 30px;
 `;
 
 export const BurgerButton = styled.button`
@@ -58,31 +65,52 @@ export const LogoText = styled.p`
   color: #ffffff;
 `;
 
+export const Cinema = styled.span`
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  text-transform: uppercase;
+
+  color: rgba(224, 30, 90);
+`;
+
 export const MobileWrapp = styled.div`
   position: absolute;
-  top: 100%;
+  top: -30px;
   right: 0;
+  z-index: 100;
 
   width: 100%;
   height: auto;
+
+  transform: translateY(-100%);
 
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 
+  padding-bottom: 10px;
+
   transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1),
     opacity 1000ms cubic-bezier(0.075, 0.82, 0.165, 1);
 
+  background: linear-gradient(45deg, rgb(51, 12, 26), rgb(4, 1, 28) 100%);
   ${(props) =>
     props.open &&
     `
             opacity: 1;
             visibility: visible;
             pointer-events: initial;
+            transform: translateY(100%);
   `}
 
   @media screen and (min-width: 768px) {
     position: static;
+
+    top: 0;
+    padding-bottom: 0;
+
+    transform: translateY(0);
 
     display: flex;
     justify-content: space-between;
@@ -93,6 +121,8 @@ export const MobileWrapp = styled.div`
     opacity: 1;
     visibility: visible;
     pointer-events: initial;
+
+    background: transparent;
   }
 
   @media screen and (min-width: 1200px) {

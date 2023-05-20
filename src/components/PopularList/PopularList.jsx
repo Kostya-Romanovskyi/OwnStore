@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { getPopularMovies } from "../../APIs/GetMoviesLists"
 import { popularMovies } from "../../Redux/Slices/PopularMoviesSlice"
-import { PopularMovies, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./PopularList.styled"
+import { PopularMovies, WatchAll, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./PopularList.styled"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/css';
@@ -66,7 +66,7 @@ const PopularList = () => {
 
     return (
         <>
-            <PopularMovies>Popular now <span>watch all</span></PopularMovies>
+            <PopularMovies>Popular now <WatchAll>watch all</WatchAll></PopularMovies>
             <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
                 slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
                 autoplay={{
