@@ -31,3 +31,31 @@ export const getUpcomingMovies = createAsyncThunk(
     }
   }
 );
+
+export const getTopRatedMovies = createAsyncThunk(
+  "topRatedMovies",
+  async () => {
+    try {
+      const response = await axios.get(
+        `${MAIN_URL}/3/movie/top_rated?api_key=${API_KEY}&language=en-US`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const getTrandingMovies = createAsyncThunk(
+  "trandingMovies",
+  async () => {
+    try {
+      const response = await axios.get(
+        `${MAIN_URL}/3/trending/movie/day?api_key=${API_KEY}&language=en-US`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);

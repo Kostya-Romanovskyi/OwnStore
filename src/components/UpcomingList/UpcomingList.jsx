@@ -9,16 +9,8 @@ import { UpcomingMovies, WatchAll, ListWrapper, Item1, Item2, Item3, SpecialTitl
 const UpcomingList = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-
     const dispatch = useDispatch()
     const upcomingMoviesSel = useSelector(upcomingMovies)
-    console.log(upcomingMoviesSel)
-
-    // const getRandomNumber = () => {
-    //     return Math.floor(Math.random() * 18);
-    // }
-
-
 
     const threeEl = upcomingMoviesSel && upcomingMoviesSel.slice(3, 10)
     console.log(threeEl)
@@ -30,8 +22,6 @@ const UpcomingList = () => {
             return str;
         }
     }
-
-
 
     const debounce = (func, delay) => {
         let timeoutId;

@@ -1,15 +1,25 @@
-// import TrendingList from "../../components/TrendingList/TrendingList"
-import PopularList from "../../components/PopularList/PopularList"
+import SwiperMovieList from "../../components/SwiperMovieList/SwiperMovieList"
 import UpcomingList from "../../components/UpcomingList/UpcomingList"
+import TrendingList from "../../components/TrendingList/TrendingList"
+import { getPopularMovies, getTopRatedMovies } from "../../APIs/GetMoviesLists"
+import { topRatedMovies } from "../../Redux/Slices/TopRatedMoviesSlice"
+import { popularMovies } from "../../Redux/Slices/PopularMoviesSlice"
 import { MainContainer, MainTitle, DecorateTitle, DecorateSircle } from "./Home.styled"
+import { useSelector } from "react-redux"
 const Home = () => {
+    const popularMoviesSel = useSelector(popularMovies)
+    const TopRatedMovieSel = useSelector(topRatedMovies)
+
+
     return (
         <main>
             <MainContainer>
                 <MainTitle>Movies for <DecorateTitle>all</DecorateTitle></MainTitle>
                 <DecorateSircle></DecorateSircle>
-                <PopularList />
+                <SwiperMovieList title='Popular now ' moviesArray={getPopularMovies} selector={popularMoviesSel} />
                 <UpcomingList />
+                <SwiperMovieList title='Top Rated ' moviesArray={getTopRatedMovies} selector={TopRatedMovieSel} />
+                <TrendingList />
             </MainContainer>
         </main>
     )

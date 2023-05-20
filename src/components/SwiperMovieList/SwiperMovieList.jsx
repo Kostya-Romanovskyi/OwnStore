@@ -1,18 +1,17 @@
 import { useState, useEffect, useRef } from "react"
-import { useSelector, useDispatch } from 'react-redux'
-import { getPopularMovies } from "../../APIs/GetMoviesLists"
-import { popularMovies } from "../../Redux/Slices/PopularMoviesSlice"
-import { PopularMovies, WatchAll, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./PopularList.styled"
+import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types';
+import { PopularMovies, WatchAll, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./SwiperMovieList.styled"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import './SwiperStyle.css';
+import './SwiperStyle.css'
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
-const PopularList = () => {
+const SwiperMovieList = ({ title, moviesArray, selector }) => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
@@ -20,8 +19,6 @@ const PopularList = () => {
         progressCircle.current.style.setProperty('--progress', 1 - progress);
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     }
-
-    const trendingMoviesSel = useSelector(popularMovies)
 
     const debounce = (func, delay) => {
         let timeoutId;
@@ -47,8 +44,7 @@ const PopularList = () => {
 
     useEffect(() => {
 
-        dispatch(getPopularMovies());
-
+        dispatch(moviesArray());
 
         const handleResize = debounce(() => {
             setScreenWidth(window.innerWidth);
@@ -61,12 +57,12 @@ const PopularList = () => {
             window.removeEventListener('resize', handleResize);
         };
 
-    }, [dispatch]);
+    }, [dispatch, moviesArray]);
 
 
     return (
         <>
-            <PopularMovies>Popular now <WatchAll>watch all</WatchAll></PopularMovies>
+            <PopularMovies>{title}<WatchAll>watch all</WatchAll></PopularMovies>
             <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
                 slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
                 autoplay={{
@@ -81,7 +77,7 @@ const PopularList = () => {
                 modules={[Autoplay, Pagination, Navigation]}
                 onAutoplayTimeLeft={onAutoplayTimeLeft}
             >
-                {trendingMoviesSel && trendingMoviesSel.map(({ id, title, poster_path, vote_average, release_date, genre_ids
+                {selector && selector.map(({ id, title, poster_path, vote_average, release_date, genre_ids
                 }) => {
                     return (
                         <SwiperSlide key={id}>
@@ -111,4 +107,10 @@ const PopularList = () => {
     )
 }
 
-export default PopularList;
+export default SwiperMovieList;
+
+SwiperMovieList.propTypes = {
+    title: PropTypes.string.isRequired,
+    moviesArray: PropTypes.func.isRequired,
+    selector: PropTypes.arrayOf(PropTypes.object)
+};
