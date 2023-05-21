@@ -5,6 +5,13 @@ export const List = styled.ul`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+  }
 `;
 
 export const Item = styled.li`
@@ -18,6 +25,12 @@ export const Item = styled.li`
 
   &:not(:last-child) {
     margin-bottom: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 200px;
+
+    padding: 10px;
   }
 `;
 
@@ -58,6 +71,8 @@ export const Duty = styled.p`
 
   text-align: center;
   text-transform: capitalize;
+
+  white-space: pre-wrap;
 
   color: #ffffff;
 `;
