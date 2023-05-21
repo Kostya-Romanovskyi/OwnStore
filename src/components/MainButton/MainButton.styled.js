@@ -1,0 +1,33 @@
+import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
+
+export const StyledLink = styled(Link)`
+  display: block;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+
+  width: 100%;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  padding: 12px 0;
+  margin-bottom: 15px;
+
+  cursor: pointer;
+
+  color: #ffffff;
+
+  background-color: #1e1b33;
+  border: 1px solid rgba(231, 231, 231, 0.4);
+  border-radius: 8px;
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(89.62deg, #0500fa 7.09%, #e01e5a 92.23%);
+  }
+`;

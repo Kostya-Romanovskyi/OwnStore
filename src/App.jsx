@@ -6,9 +6,11 @@ import Header from './components/Header/Header'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Search from './pages/Search'
+import Movie from './pages/Movie/Movie'
 import Favorite from './pages/Favorite'
 import Library from './pages/Library'
 import About from './pages/About'
+import Cast from './pages/Cast/Cast'
 
 
 
@@ -21,6 +23,8 @@ function App() {
                     <Route index path="/" element={<Home />} />
 
                     <Route path="/search" element={<Search />} />
+                    <Route path="/search/:movieId" element={<Movie />} />
+                    <Route path="/search/:movieId/cast" element={<Cast />} />
 
                     <Route path="/favorite" element={<Favorite />} />
 

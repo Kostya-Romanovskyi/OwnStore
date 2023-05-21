@@ -8,11 +8,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperStyle.css'
 
+
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
 const SwiperMovieList = ({ title, moviesArray, selector }) => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
     const onAutoplayTimeLeft = (s, time, progress) => {
@@ -80,6 +82,7 @@ const SwiperMovieList = ({ title, moviesArray, selector }) => {
                 {selector && selector.map(({ id, title, poster_path, vote_average, release_date, genre_ids
                 }) => {
                     return (
+
                         <SwiperSlide key={id}>
 
                             <Poster src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
@@ -92,7 +95,8 @@ const SwiperMovieList = ({ title, moviesArray, selector }) => {
                                     <Statistic>{release_date}</Statistic>
                                     <Statistic>{genre_ids.map(genre => genre)}</Statistic>
                                 </FlexWrapp>
-                                <Button type="button">film page</Button>
+                                {/* <Button type="button">film page</Button> */}
+                                <Button to={`/search/${id}`}>film page</Button>
                             </Container>
                         </SwiperSlide>)
                 })}

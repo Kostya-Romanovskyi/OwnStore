@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 export const List = styled.ul`
   display: flex;
@@ -86,8 +87,8 @@ export const Statistic = styled.p`
   color: #ffffff;
 `;
 
-export const Button = styled.button`
-  font-family: "Outfit", sans-serif;
+export const Button = styled(Link)`
+  display: block;
 
   font-weight: 600;
   font-size: 14px;
@@ -97,6 +98,8 @@ export const Button = styled.button`
 
   text-align: center;
   text-transform: uppercase;
+
+  text-decoration: none;
 
   padding: 12px 0;
   margin-bottom: 15px;
