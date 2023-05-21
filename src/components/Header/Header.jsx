@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 // import { Suspense } from "react"
-import Logo from "../../assets/Logo-test.png";
+import Logo from "../../assets/Logo.png";
 import {
     HeaderBackground,
     LogoWrapper,

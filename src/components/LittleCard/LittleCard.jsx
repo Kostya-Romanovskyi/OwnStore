@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Poster, InfoWrapp, TitleWrapp, Title, LikeButton, StatWrapp, Date, Vote } from '../UpcomingList/UpcomingList.styled'
 import { Item } from './LittleCard.styled'
 const LittleCard = ({ img, title, date, vote }) => {
@@ -26,4 +27,11 @@ const LittleCard = ({ img, title, date, vote }) => {
     </Item>
 }
 
-export default LittleCard
+export default LittleCard;
+
+LittleCard.propTypes = {
+    img: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    vote: PropTypes.number.isRequired
+};

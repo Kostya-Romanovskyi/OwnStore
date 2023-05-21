@@ -6,8 +6,11 @@ export const List = styled.ul`
   align-items: center;
   gap: 20px;
 
+  margin-bottom: 40px;
+
   @media screen and (min-width: 768px) {
     justify-content: space-between;
+    margin-bottom: 100px;
   }
 `;
 
