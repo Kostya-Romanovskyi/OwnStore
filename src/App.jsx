@@ -11,6 +11,8 @@ import Favorite from './pages/Favorite'
 import Library from './pages/Library'
 import About from './pages/About'
 import Cast from './pages/Cast/Cast'
+import Reviews from './pages/Reviews/Reviews'
+import Popular from './pages/Popular/Popular'
 
 
 
@@ -23,8 +25,13 @@ function App() {
                     <Route index path="/" element={<Home />} />
 
                     <Route path="/search" element={<Search />} />
+
                     <Route path="/search/:movieId" element={<Movie />} />
                     <Route path="/search/:movieId/cast" element={<Cast />} />
+                    <Route path="/search/:movieId/reviews" element={<Reviews />} />
+
+                    <Route path="/popular" element={<Popular />} />
+
 
                     <Route path="/favorite" element={<Favorite />} />
 

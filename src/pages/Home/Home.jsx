@@ -18,9 +18,9 @@ const Home = () => {
             <MainContainer>
                 <MainTitle>Movies for <DecorateTitle>all</DecorateTitle></MainTitle>
                 <DecorateSircle></DecorateSircle>
-                <SwiperMovieList title='Popular now ' moviesArray={getPopularMovies} selector={popularMoviesSel} />
+                <SwiperMovieList title='Popular now ' link={`/popular`} moviesArray={getPopularMovies} selector={popularMoviesSel} />
                 <UpcomingList />
-                <SwiperMovieList title='Top Rated ' moviesArray={getTopRatedMovies} selector={TopRatedMovieSel} />
+                <SwiperMovieList title='Top Rated ' link={`/toprated`} moviesArray={getTopRatedMovies} selector={TopRatedMovieSel} />
                 <TrendingList />
                 <SectionSearch />
             </MainContainer>

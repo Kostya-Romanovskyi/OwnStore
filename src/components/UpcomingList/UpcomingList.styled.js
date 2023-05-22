@@ -1,4 +1,18 @@
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
+
+export const Section = styled.section`
+  margin-bottom: 35px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 45px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 55px;
+  }
+`;
 
 export const UpcomingMovies = styled.h2`
   font-family: "Outfit", sans-serif;
@@ -11,11 +25,13 @@ export const UpcomingMovies = styled.h2`
   color: rgba(231, 231, 231, 0.24);
 `;
 
-export const WatchAll = styled.span`
+export const WatchAllLink = styled(Link)`
   font-weight: 500;
   font-size: 1.2rem;
 
   text-transform: uppercase;
+
+  text-decoration: none;
 
   color: rgba(224, 30, 90, 0.5);
 `;
@@ -34,7 +50,7 @@ export const ListWrapper = styled.ul`
   }
 `;
 
-export const Item1 = styled.li`
+export const card0 = css`
   grid-area: 1 / 1 / 3 / 2;
   display: flex;
 
@@ -58,7 +74,7 @@ export const Item1 = styled.li`
     }
   }
 `;
-export const Item2 = styled.li`
+export const card1 = css`
   grid-area: 1 / 2 / 2 / 3;
 
   display: flex;
@@ -81,7 +97,7 @@ export const Item2 = styled.li`
     }
   }
 `;
-export const Item3 = styled.li`
+export const card2 = css`
   grid-area: 2 / 2 / 3 / 3;
   display: flex;
 
@@ -103,8 +119,20 @@ export const Item3 = styled.li`
   }
 `;
 
+export const StyleLink = styled(Link)`
+  display: block;
+  width: 100%;
+
+  text-decoration: none;
+`;
+
+export const FlexWrapp = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const Poster = styled.img`
-  width: 95px;
+  width: 98px;
   height: auto;
 
   border-radius: 8px;

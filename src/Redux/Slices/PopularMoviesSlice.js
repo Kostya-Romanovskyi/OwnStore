@@ -23,3 +23,4 @@ export default popularMoviesSlice.reducer;
 
 //Selectors
 export const popularMovies = (state) => state.popularMovies.moviesInfo.results;
+export const popularMoviesFull = (state) => state.popularMovies.moviesInfo;

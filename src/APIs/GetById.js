@@ -25,3 +25,14 @@ export const getCastById = createAsyncThunk("castById", async (id) => {
     console.error(error);
   }
 });
+
+export const getReviewsById = createAsyncThunk("reviewsById", async (id) => {
+  try {
+    const response = await axios.get(
+      `${MAIN_URL}/3/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+});

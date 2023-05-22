@@ -8,6 +8,8 @@ export const TitleWrapp = styled.div`
 
   margin-bottom: 30px;
 
+  width: 100%;
+
   @media screen and (min-width: 768px) {
     align-items: flex-start;
 

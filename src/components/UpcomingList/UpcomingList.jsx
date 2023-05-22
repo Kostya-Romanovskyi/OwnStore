@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { getUpcomingMovies } from "../../APIs/GetMoviesLists"
 import { upcomingMovies } from "../../Redux/Slices/UpcomingMoviesSlice"
-// import { Grid, Cell } from 'react-grid-system';
-import { UpcomingMovies, WatchAll, ListWrapper, Item1, Item2, Item3, SpecialTitleWrapp, Poster, InfoWrapp, TitleWrapp, Title, Overview, StatWrapp, Date, Vote, LikeButton } from "./UpcomingList.styled"
+import './Upp.css'
+import { Section, UpcomingMovies, WatchAllLink, StyleLink, ListWrapper, Poster, InfoWrapp, TitleWrapp, Title, Overview, StatWrapp, Date, Vote, LikeButton, FlexWrapp } from "./UpcomingList.styled"
 
 
 const UpcomingList = () => {
@@ -12,7 +12,7 @@ const UpcomingList = () => {
     const dispatch = useDispatch()
     const upcomingMoviesSel = useSelector(upcomingMovies)
 
-    const threeEl = upcomingMoviesSel && upcomingMoviesSel.slice(3, 10)
+    const threeEl = upcomingMoviesSel && upcomingMoviesSel.slice(7, 10)
     console.log(threeEl)
 
     const truncateString = (str, maxLength) => {
@@ -51,78 +51,55 @@ const UpcomingList = () => {
     }, [dispatch]);
 
 
-    return (
-        <>
-            <UpcomingMovies>Upcoming movies <WatchAll>watch all</WatchAll> </UpcomingMovies>
-            <ListWrapper>
-                {/* {threeEl && threeEl.map(({ id, title, release_date, vote_average, backdrop_path
-                }) => {
-                    return (
-                        <Item key={id}>
-                            <Poster src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt={title} />
+    return (<Section>
+        <UpcomingMovies>Upcoming movies <WatchAllLink to={'/upcoming'}>watch all</WatchAllLink> </UpcomingMovies>
+        <ListWrapper>
+            {threeEl && threeEl.map(({ id, title, release_date, vote_average, backdrop_path, poster_path, overview, original_language }, index) => {
+                return (
+                    <li className={`card${index % 3}`} key={id}>
+                        <StyleLink to={`/search/${id}`}>
+                            <FlexWrapp>
+                                {index === 0 && screenWidth > 768 ? (<Poster src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />) :
+                                    (<Poster src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt={title} />)}
 
-                            <InfoWrapp>
-                                <TitleWrapp>
-                                    <Title>{truncateString(title, 14)}</Title>
-                                    <LikeButton>like</LikeButton>
-                                </TitleWrapp>
-                                <StatWrapp>
-                                    <Date>{release_date}</Date>
-                                    <Vote>{vote_average}</Vote>
-                                </StatWrapp>
-                            </InfoWrapp>
+                                <InfoWrapp>
+                                    {index === 0 && screenWidth > 768 ?
+                                        (<TitleWrapp style={{
+                                            paddingTop: 7,
+                                            marginBottom: 12
+                                        }}>
+                                            {index === 0 && screenWidth > 1200 ?
+                                                <Title style={{ marginBottom: 23 }}>{truncateString(title, 14)}</Title> :
+                                                <Title>{truncateString(title, 14)}</Title>}
 
-                        </Item>
-                    )
-                }
-                )} */}
+                                            {index === 0 && screenWidth > 1200 ?
+                                                <LikeButton style={{ marginBottom: 23 }}>{original_language}</LikeButton> :
+                                                <LikeButton>{original_language}</LikeButton>}
 
-                {threeEl && <Item1>
-                    <Poster src={`https://image.tmdb.org/t/p/w500${screenWidth > 768 ? threeEl[0].poster_path : threeEl[0].backdrop_path}`} alt={threeEl[0].title} />
+                                        </TitleWrapp>)
+                                        :
+                                        (<TitleWrapp>
+                                            <Title>{truncateString(title, 14)}</Title>
+                                            <LikeButton>{original_language}</LikeButton>
+                                        </TitleWrapp>)}
 
-                    <InfoWrapp>
-                        <SpecialTitleWrapp>
-                            <Title>{threeEl[0].title}</Title>
-                            <LikeButton>like</LikeButton>
-                        </SpecialTitleWrapp>
-                        <Overview>{screenWidth > 768 ? truncateString(threeEl[0].overview, 140) : ''}</Overview>
-                        <StatWrapp>
-                            <Date>{threeEl[0].release_date}</Date>
-                            <Vote>{threeEl[0].vote_average}</Vote>
-                        </StatWrapp>
-                    </InfoWrapp>
-                </Item1>}
-                {threeEl && <Item2 >
-                    <Poster src={`https://image.tmdb.org/t/p/w500${threeEl[1].backdrop_path}`} alt={threeEl[1].title} />
+                                    {index === 0 && screenWidth > 768 ? <Overview>{screenWidth > 768 ? truncateString(overview, 140) : ''}</Overview> : ''}
 
-                    <InfoWrapp>
-                        <TitleWrapp>
-                            <Title>{truncateString(threeEl[1].title, 14)}</Title>
-                            <LikeButton>like</LikeButton>
-                        </TitleWrapp>
-                        <StatWrapp>
-                            <Date>{threeEl[1].release_date}</Date>
-                            <Vote>{threeEl[1].vote_average}</Vote>
-                        </StatWrapp>
-                    </InfoWrapp>
-                </Item2>}
-                {threeEl && <Item3 >
-                    <Poster src={`https://image.tmdb.org/t/p/w500${threeEl[2].backdrop_path}`} alt={threeEl[2].title} />
+                                    <StatWrapp>
+                                        <Date>{release_date}</Date>
+                                        <Vote>Rating:  {vote_average.toFixed(2)}</Vote>
+                                    </StatWrapp>
+                                </InfoWrapp>
+                            </FlexWrapp>
+                        </StyleLink>
+                    </li>
+                );
+            }
+            )}
+        </ListWrapper>
 
-                    <InfoWrapp>
-                        <TitleWrapp>
-                            <Title>{truncateString(threeEl[2].title, 14)}</Title>
-                            <LikeButton>like</LikeButton>
-                        </TitleWrapp>
-                        <StatWrapp>
-                            <Date>{threeEl[2].release_date}</Date>
-                            <Vote>{threeEl[2].vote_average}</Vote>
-                        </StatWrapp>
-                    </InfoWrapp>
-                </Item3>}
-            </ListWrapper>
-        </>
-    )
+    </Section>)
 }
 
 export default UpcomingList;
+

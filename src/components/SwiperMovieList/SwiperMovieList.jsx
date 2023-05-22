@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react"
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types';
-import { PopularMovies, WatchAll, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./SwiperMovieList.styled"
+import MainCard from "../MainCard/MainCard";
+import { Section, PopularMovies, WatchAllLink } from "./SwiperMovieList.styled"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/css';
@@ -12,8 +13,9 @@ import './SwiperStyle.css'
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
-const SwiperMovieList = ({ title, moviesArray, selector }) => {
+const SwiperMovieList = ({ title, link, moviesArray, selector }) => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
 
     const progressCircle = useRef(null);
     const progressContent = useRef(null);
@@ -32,14 +34,6 @@ const SwiperMovieList = ({ title, moviesArray, selector }) => {
                 func.apply(this, args);
             }, delay);
         };
-    }
-
-    const truncateString = (str, maxLength) => {
-        if (str.length > maxLength) {
-            return str.substring(0, maxLength) + "...";
-        } else {
-            return str;
-        }
     }
 
     const dispatch = useDispatch()
@@ -63,8 +57,10 @@ const SwiperMovieList = ({ title, moviesArray, selector }) => {
 
 
     return (
-        <>
-            <PopularMovies>{title}<WatchAll>watch all</WatchAll></PopularMovies>
+        <Section>
+
+            <PopularMovies>{title}<WatchAllLink to={link}>watch all</WatchAllLink></PopularMovies>
+
             <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
                 slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
                 autoplay={{
@@ -84,22 +80,15 @@ const SwiperMovieList = ({ title, moviesArray, selector }) => {
                     return (
 
                         <SwiperSlide key={id}>
-
-                            <Poster src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
-                            <Container>
-                                <FlexWrapp>
-                                    <TitleFilm>{truncateString(title, 15)}</TitleFilm>
-                                    <Statistic>{vote_average}</Statistic>
-                                </FlexWrapp>
-                                <FlexWrapp>
-                                    <Statistic>{release_date}</Statistic>
-                                    <Statistic>{genre_ids.map(genre => genre)}</Statistic>
-                                </FlexWrapp>
-                                {/* <Button type="button">film page</Button> */}
-                                <Button to={`/search/${id}`}>film page</Button>
-                            </Container>
+                            <MainCard id={id}
+                                title={title}
+                                poster={poster_path}
+                                vote={vote_average}
+                                date={release_date}
+                                genre={genre_ids} />
                         </SwiperSlide>)
                 })}
+
                 <div className="autoplay-progress" slot="container-end">
                     <svg viewBox="0 0 48 48" ref={progressCircle}>
                         <circle cx="24" cy="24" r="20"></circle>
@@ -107,7 +96,7 @@ const SwiperMovieList = ({ title, moviesArray, selector }) => {
                     <span className="progressContent" ref={progressContent}></span>
                 </div>
             </Swiper>
-        </>
+        </Section>
     )
 }
 
@@ -115,6 +104,7 @@ export default SwiperMovieList;
 
 SwiperMovieList.propTypes = {
     title: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
     moviesArray: PropTypes.func.isRequired,
     selector: PropTypes.arrayOf(PropTypes.object)
 };
