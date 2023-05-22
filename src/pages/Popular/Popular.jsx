@@ -1,11 +1,11 @@
 import FullPopularList from "../../components/FullPopularList/FullPopularList"
-import { MainContainer } from "./Popular.styled"
+import { MainContainer, PopularMovies } from "./Popular.styled"
 
 const Popular = () => {
     return (<>
 
         <MainContainer>
-            <p>popular</p>
+            <PopularMovies>Popular movies</PopularMovies>
             <FullPopularList />
         </MainContainer>
 

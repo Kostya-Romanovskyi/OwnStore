@@ -34,5 +34,5 @@ MainCard.propTypes = {
     id: PropTypes.number.isRequired,
     vote: PropTypes.number.isRequired,
     poster: PropTypes.string.isRequired,
-    genre: PropTypes.arrayOf(PropTypes.string).isRequired
+    genre: PropTypes.arrayOf(PropTypes.number).isRequired
 };

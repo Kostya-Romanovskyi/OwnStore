@@ -23,39 +23,24 @@ export const MainContainer = styled.div`
 export const GridList = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  column-gap: 100px;
+  gap: 30px;
+
+  margin-bottom: 30px;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
   @media (min-width: 1200px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 `;
 
 export const Item = styled.li`
-  position: relative;
-
-  &:not(:last-child) {
-    margin-bottom: 30px;
-  }
-`;
-
-export const Poster = styled.img`
-  width: 100%;
-
-  border-radius: 10px;
-`;
-
-export const InfoWrapp = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-
-  padding: 20px;
-
-  width: 100%;
-
+  text-align: center;
+  font-size: 18px;
   background-color: #1e1b33;
+  border-radius: 12px;
+
+  height: auto;
 `;
