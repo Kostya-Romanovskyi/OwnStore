@@ -1,33 +1,35 @@
 import { useEffect, useState } from "react"
-import { getPopularMovies } from "../../APIs/GetMoviesLists"
-import { popularMoviesFull } from "../../Redux/Slices/PopularMoviesSlice"
+import { getTopRatedMovies } from "../../APIs/GetMoviesLists"
+import { topRatedMoviesFull } from "../../Redux/Slices/TopRatedMoviesSlice";
 import { useDispatch, useSelector } from "react-redux"
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import MainCard from "../MainCard/MainCard";
-import { MainContainer, GridList, Item } from "./FullPopularList.styled";
+import { MainContainer, GridList, Item } from "./FullTopRatedList.styled";
 
-const FullPopularList = () => {
-    const popularListSel = useSelector(popularMoviesFull)
-    console.log(popularListSel.results)
+const FullTopRatedList = () => {
+    const topRatedListSel = useSelector(topRatedMoviesFull)
+    console.log(topRatedListSel.results)
 
     const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageChange = (event, page) => {
         setCurrentPage(page);
+
+        window.scrollTo(0, 0);
     };
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getPopularMovies(currentPage))
+        dispatch(getTopRatedMovies(currentPage))
     }, [dispatch, currentPage])
 
     return (
         <main>
             <MainContainer>
                 <GridList>
-                    {popularListSel.results && popularListSel.results.map(({ id, poster_path, title, vote_average, release_date, genre_ids
+                    {topRatedListSel.results && topRatedListSel.results.map(({ id, poster_path, title, vote_average, release_date, genre_ids
                     }) =>
                         <Item key={id}>
 
@@ -43,10 +45,10 @@ const FullPopularList = () => {
                 </GridList>
 
                 <Stack spacing={2} >
-                    <Pagination onChange={handlePageChange} count={500} page={currentPage} variant="outlined" color="secondary" style={{ justifyContent: 'center' }} />
+                    <Pagination onChange={handlePageChange} count={500} page={currentPage} variant="outlined" color="secondary" />
                 </Stack>
             </MainContainer>
         </main>
     )
 }
-export default FullPopularList
+export default FullTopRatedList

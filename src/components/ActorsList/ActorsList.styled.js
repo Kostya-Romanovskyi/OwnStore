@@ -1,21 +1,25 @@
 import styled from "@emotion/styled";
 
 export const List = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 30px;
 
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
+  margin-bottom: 30px;
 
-    flex-wrap: wrap;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 15px;
   }
 `;
 
 export const Item = styled.li`
-  width: 80%;
+  width: 100%;
 
   padding: 24px;
 
@@ -23,15 +27,11 @@ export const Item = styled.li`
   border: 1px solid rgba(231, 235, 238, 0.4);
   border-radius: 12px;
 
-  &:not(:last-child) {
-    margin-bottom: 30px;
-  }
-
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     width: 200px;
 
     padding: 10px;
-  }
+  } */
 `;
 
 export const Photo = styled.img`
@@ -41,6 +41,10 @@ export const Photo = styled.img`
   margin-bottom: 20px;
 
   border-radius: 10px;
+
+  @media screen and (min-width: 768px) {
+    height: 260px;
+  }
 `;
 
 export const Name = styled.h3`
@@ -97,4 +101,19 @@ export const Character = styled.p`
   text-transform: capitalize;
 
   color: #ffffff;
+`;
+
+export const EmptyCast = styled.p`
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 0.83;
+
+  letter-spacing: -0.014em;
+
+  background: linear-gradient(89.62deg, #06045b 7.09%, #e01e5a 92.23%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;

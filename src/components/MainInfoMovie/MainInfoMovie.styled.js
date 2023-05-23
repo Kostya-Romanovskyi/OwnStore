@@ -4,7 +4,6 @@ export const TitleWrapp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
 
   margin-bottom: 30px;
 
@@ -20,7 +19,7 @@ export const TitleWrapp = styled.div`
 export const Title = styled.h2`
   font-weight: 700;
   font-size: 25px;
-  /* font-size: 64px; */
+
   line-height: 1.25;
 
   letter-spacing: -0.014em;

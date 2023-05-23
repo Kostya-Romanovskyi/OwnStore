@@ -8,6 +8,10 @@ export const Poster = styled.img`
   padding: 17px;
 
   border-radius: 25px;
+
+  @media screen and (min-width: 768px) {
+    height: 262px;
+  }
 `;
 
 export const Container = styled.div`

@@ -24,3 +24,5 @@ export default upcomingMoviesSlice.reducer;
 //Selectors
 export const upcomingMovies = (state) =>
   state.upcomingMovies.moviesInfo.results;
+
+export const upcomingMoviesFull = (state) => state.upcomingMovies.moviesInfo;

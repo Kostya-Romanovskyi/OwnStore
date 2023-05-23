@@ -20,7 +20,7 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const PopularMovies = styled.h2`
+export const TrendingMovies = styled.h2`
   font-weight: 700;
   font-size: 2.8rem;
   line-height: 1.2;
@@ -36,7 +36,7 @@ export const PopularMovies = styled.h2`
   -webkit-text-fill-color: transparent;
   background-clip: text;
 
-  @media screen and (min-width: 786px) {
+  @media screen and (min-width: 768px) {
     font-size: 4rem;
   }
 `;

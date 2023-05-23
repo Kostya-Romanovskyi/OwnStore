@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 export const InfoSearchWrapp = styled.div`
   display: flex;
@@ -60,13 +61,15 @@ export const InfoSearch = styled.p`
   color: #c0c0c0;
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled(Link)`
   padding: 8px 16px;
   margin-right: 10px;
 
   background: linear-gradient(89.62deg, #0500fa 7.09%, #e01e5a 92.23%);
   border: none;
   border-radius: 8px;
+
+  text-decoration: none;
 
   cursor: pointer;
 

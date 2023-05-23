@@ -20,10 +20,10 @@ export const getPopularMovies = createAsyncThunk(
 
 export const getUpcomingMovies = createAsyncThunk(
   "upcomingMovies",
-  async () => {
+  async (page = 1) => {
     try {
       const response = await axios.get(
-        `${MAIN_URL}/3/movie/upcoming?api_key=${API_KEY}&language=en-US`
+        `${MAIN_URL}/3/movie/upcoming?api_key=${API_KEY}&page=${page}&language=en-US`
       );
       return response.data;
     } catch (error) {
@@ -48,10 +48,10 @@ export const getTopRatedMovies = createAsyncThunk(
 
 export const getTrandingMovies = createAsyncThunk(
   "trandingMovies",
-  async () => {
+  async (page = 1) => {
     try {
       const response = await axios.get(
-        `${MAIN_URL}/3/trending/movie/day?api_key=${API_KEY}&language=en-US`
+        `${MAIN_URL}/3/trending/movie/day?api_key=${API_KEY}&page=${page}&language=en-US`
       );
       return response.data;
     } catch (error) {

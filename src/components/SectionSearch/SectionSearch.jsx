@@ -1,4 +1,5 @@
 import ruby from '../../assets/ruby.png'
+
 import { InfoSearchWrapp, RubyImg, InfoWrapp, TitleSearch, InfoSearch, SearchButton } from './SectionSearch.styled'
 
 const SectionSearch = () => {
@@ -9,7 +10,7 @@ const SectionSearch = () => {
                 <InfoWrapp>
                     <TitleSearch>Search</TitleSearch>
                     <InfoSearch>Click on button and search your favorite movies. <br />Never, finding movies has been so easy</InfoSearch>
-                    <SearchButton type="button">Click me</SearchButton>
+                    <SearchButton to={`/search`}>Click me</SearchButton>
                 </InfoWrapp>
             </InfoSearchWrapp>
 

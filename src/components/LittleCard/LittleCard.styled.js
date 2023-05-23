@@ -20,7 +20,6 @@ export const Item = styled.li`
 
   &:hover,
   &:focus {
-    /* box-shadow: 0 0 10px 2px #1e1b33; */
     box-shadow: 0 0 20px 6px #1e1b33;
   }
 `;

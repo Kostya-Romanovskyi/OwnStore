@@ -119,11 +119,25 @@ export const card2 = css`
   }
 `;
 
+export const Item = styled.li`
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 20px 6px #1e1b33;
+    transition: box-shadow 300ms;
+  }
+`;
+
 export const StyleLink = styled(Link)`
   display: block;
   width: 100%;
 
   text-decoration: none;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 20px 6px #1e1b33;
+    transition: box-shadow 300ms;
+  }
 `;
 
 export const FlexWrapp = styled.div`

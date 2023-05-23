@@ -24,3 +24,4 @@ export default topRatedMoviesSlice.reducer;
 //Selectors
 export const topRatedMovies = (state) =>
   state.topRatedMovies.moviesInfo.results;
+export const topRatedMoviesFull = (state) => state.topRatedMovies.moviesInfo;

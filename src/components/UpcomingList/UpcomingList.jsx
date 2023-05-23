@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUpcomingMovies } from "../../APIs/GetMoviesLists"
 import { upcomingMovies } from "../../Redux/Slices/UpcomingMoviesSlice"
 import './Upp.css'
-import { Section, UpcomingMovies, WatchAllLink, StyleLink, ListWrapper, Poster, InfoWrapp, TitleWrapp, Title, Overview, StatWrapp, Date, Vote, LikeButton, FlexWrapp } from "./UpcomingList.styled"
+import { Section, UpcomingMovies, WatchAllLink, Item, StyleLink, ListWrapper, Poster, InfoWrapp, TitleWrapp, Title, Overview, StatWrapp, Date, Vote, LikeButton, FlexWrapp } from "./UpcomingList.styled"
 
 
 const UpcomingList = () => {
@@ -56,7 +56,7 @@ const UpcomingList = () => {
         <ListWrapper>
             {threeEl && threeEl.map(({ id, title, release_date, vote_average, backdrop_path, poster_path, overview, original_language }, index) => {
                 return (
-                    <li className={`card${index % 3}`} key={id}>
+                    <Item className={`card${index % 3}`} key={id}>
                         <StyleLink to={`/search/${id}`}>
                             <FlexWrapp>
                                 {index === 0 && screenWidth > 768 ? (<Poster src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />) :
@@ -92,7 +92,7 @@ const UpcomingList = () => {
                                 </InfoWrapp>
                             </FlexWrapp>
                         </StyleLink>
-                    </li>
+                    </Item>
                 );
             }
             )}

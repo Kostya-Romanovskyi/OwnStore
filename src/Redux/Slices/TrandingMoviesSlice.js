@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getTrandingMovies } from "../../APIs/GetMoviesLists";
 
 export const trandingMoviesSlice = createSlice({
-  name: "topRatedMovies",
+  name: "trandingMovies",
   initialState: { moviesInfo: {}, loading: false },
   reducers: {},
   extraReducers: (builder) => {
@@ -24,3 +24,5 @@ export default trandingMoviesSlice.reducer;
 //Selectors
 export const trandingMovies = (state) =>
   state.trandingMovies.moviesInfo.results;
+
+export const trandingMoviesFull = (state) => state.trandingMovies.moviesInfo;

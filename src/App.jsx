@@ -13,6 +13,9 @@ import About from './pages/About'
 import Cast from './pages/Cast/Cast'
 import Reviews from './pages/Reviews/Reviews'
 import Popular from './pages/Popular/Popular'
+import TopRated from './pages/TopRated/TopRated'
+import Upcoming from './pages/Upcoming/Upcoming'
+import Trending from './pages/Trending/Trending'
 
 
 
@@ -32,6 +35,11 @@ function App() {
 
                     <Route path="/popular" element={<Popular />} />
 
+                    <Route path="/toprated" element={<TopRated />} />
+
+                    <Route path="/upcoming" element={<Upcoming />} />
+
+                    <Route path="/trending" element={<Trending />} />
 
                     <Route path="/favorite" element={<Favorite />} />
 
