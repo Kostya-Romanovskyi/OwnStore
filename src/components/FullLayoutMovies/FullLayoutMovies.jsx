@@ -4,13 +4,13 @@ import Stack from '@mui/material/Stack';
 import PropTypes from 'prop-types';
 import Pagination from '@mui/material/Pagination';
 import AllMoviesList from "../AllMoviesList/AllMoviesList";
-import { MainContainer } from "./FullLayoutMovies.styled";
+import { MainContainer, StyledStack } from "./FullLayoutMovies.styled";
 
 const FullLayoutMovies = ({ categoryInfo, fetchMovies }) => {
     const [currentPage, setCurrentPage] = useState(1);
-
-    console.log(categoryInfo)
+    // console.log(categoryInfo)
     const handlePageChange = (event, page) => {
+        console.log(page)
         setCurrentPage(page);
 
         window.scrollTo(0, 0);
@@ -28,11 +28,11 @@ const FullLayoutMovies = ({ categoryInfo, fetchMovies }) => {
 
                 <AllMoviesList categoryInfo={categoryInfo} />
 
-                <Stack spacing={2} >
+                <StyledStack spacing={2} style={{ marginBottom: 20, alignItems: 'center', justifyContent: "center" }}>
                     <Pagination onChange={handlePageChange} count={categoryInfo.total_pages && categoryInfo.total_pages > 200 ?
                         300 :
-                        categoryInfo.total_pages} page={currentPage} variant="outlined" color="secondary" />
-                </Stack>
+                        categoryInfo.total_pages} page={currentPage} variant="outlined" color="primary" />
+                </StyledStack>
 
             </MainContainer>
         </main>

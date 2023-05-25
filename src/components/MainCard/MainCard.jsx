@@ -17,7 +17,7 @@ const MainCard = ({ id, title, poster, vote, date, genre }) => {
         <Container>
             <FlexWrapp>
                 <TitleFilm>{truncateString(title, 15)}</TitleFilm>
-                <Statistic>{vote}</Statistic>
+                <Statistic>{vote.toFixed(1)}</Statistic>
             </FlexWrapp>
             <FlexWrapp>
                 <Statistic>{date}</Statistic>

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Stack from "@mui/material/Stack";
 
 export const MainContainer = styled.div`
   position: relative;
@@ -17,5 +18,18 @@ export const MainContainer = styled.div`
   @media screen and (min-width: 1200px) {
     max-width: 1200px;
     padding: 40px 16px 40px 16px;
+  }
+`;
+
+export const StyledStack = styled(Stack)`
+  ul li button {
+    color: #fff;
+
+    border-color: #fff;
+
+    @media screen and (max-width: 767px) {
+      min-width: 15px;
+      min-height: 15px;
+    }
   }
 `;

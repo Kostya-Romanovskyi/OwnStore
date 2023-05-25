@@ -8,7 +8,9 @@ import { TitleWrapp, Title, ImgMobile, OverviewStyled, Img, GenresList, GenresIt
 const MainInfoMovie = () => {
     const { movieId } = useParams()
     const { title, status, genres, backdrop_path, poster_path, overview } = useSelector(movieById)
-    console.log(poster_path)
+    const test = useSelector(movieById)
+    console.log(title)
+    console.log(test)
 
     return (<>
         <TitleWrapp>
