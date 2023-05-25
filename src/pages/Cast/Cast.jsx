@@ -1,12 +1,14 @@
+import PropTypes from 'prop-types';
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+
 import { getCastById } from "../../APIs/GetById"
 import { useParams } from "react-router-dom"
 import ActorsList from "../../components/ActorsList/ActorsList"
-import { MainContainer } from "./Cast.styled"
+import { MainContainer, BackLink } from "./Cast.styled"
 import ScrollToTop from "../../components/ScrollToTop"
 
-const Cast = () => {
+const Cast = ({ backPath }) => {
     const dispatch = useDispatch()
     const { movieId } = useParams()
 
@@ -17,8 +19,13 @@ const Cast = () => {
     return (<main>
         <ScrollToTop />
         <MainContainer>
+            <BackLink to={backPath?.pathname ?? `/search/${movieId}`}>Go back</BackLink>
             <ActorsList />
         </MainContainer>
     </main>)
 }
 export default Cast
+
+Cast.propTypes = {
+    backPath: PropTypes.object.isRequired
+};

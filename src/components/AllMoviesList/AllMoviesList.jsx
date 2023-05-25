@@ -3,7 +3,7 @@ import MainCard from "../MainCard/MainCard"
 import { GridList, Item } from "./AllMoviesList.styled"
 import { useLocation } from 'react-router-dom';
 
-const AllMoviesList = ({ categoryInfo, path }) => {
+const AllMoviesList = ({ categoryInfo }) => {
     const location = useLocation()
     console.log(location)
 

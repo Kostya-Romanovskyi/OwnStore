@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-
 import { StyledLink } from "./MainButton.styled";
 
+
+
+
 const MainButton = ({ route, content }) => {
-    return <StyledLink to={route}>{content}</StyledLink>
+    return <StyledLink to={route} >{content}</StyledLink>
 }
 export default MainButton;
 

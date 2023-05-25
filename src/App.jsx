@@ -16,10 +16,14 @@ import Popular from './pages/Popular/Popular'
 import TopRated from './pages/TopRated/TopRated'
 import Upcoming from './pages/Upcoming/Upcoming'
 import Trending from './pages/Trending/Trending'
+import { useState } from 'react'
 
 
 
 function App() {
+    const [pathCast, setPathCast] = useState({})
+    const [pathReviews, setPathReviews] = useState({})
+
     return (
         <div className='test-wrapper'>
             <Routes>
@@ -29,9 +33,9 @@ function App() {
 
                     <Route path="/search" element={<Search />} />
 
-                    <Route path="/search/:movieId" element={<Movie />} />
-                    <Route path="/search/:movieId/cast" element={<Cast />} />
-                    <Route path="/search/:movieId/reviews" element={<Reviews />} />
+                    <Route path="/search/:movieId" element={<Movie pathCast={setPathCast} pathReviews={setPathReviews} />} />
+                    <Route path="/search/:movieId/cast" element={<Cast backPath={pathCast} />} />
+                    <Route path="/search/:movieId/reviews" element={<Reviews backPath={pathReviews} />} />
 
                     <Route path="/popular" element={<Popular />} />
 
