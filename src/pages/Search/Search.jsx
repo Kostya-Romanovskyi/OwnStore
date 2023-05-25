@@ -11,16 +11,16 @@ import { TfiSearch } from 'react-icons/tfi'
 
 const Search = () => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [query, setQuery] = useState('')
+
     const [searchParams, setSearchParams] = useSearchParams()
 
-    // const { page, results, total_pages, total_results } = useSelector(searchMoviesFull)
+    const query = searchParams.get('query') ?? ""
+
     const searchMovieSel = useSelector(searchMoviesFull)
 
     const dispatch = useDispatch()
 
     const handleInputChange = (e) => {
-        setQuery(e.target.value)
 
         if (e.target.value === "") {
             return setSearchParams({})
@@ -39,6 +39,10 @@ const Search = () => {
     const handleResponse = (e) => {
         e.preventDefault()
 
+        if (query === null) {
+            return
+        }
+
         dispatch(getMoviesSearch({ currentPage, query }))
     }
 
@@ -54,7 +58,7 @@ const Search = () => {
             <TitleStyled>Find your favorite movie</TitleStyled>
 
             <StyledForm autoComplete="off">
-                <CustomInput onChange={handleInputChange} id="outlined-basic" label="Search" variant="outlined" />
+                <CustomInput onChange={handleInputChange} value={query} id="outlined-basic" label="Search" variant="outlined" />
                 <SearchButton onClick={handleResponse}>
                     <TfiSearch style={{ fill: '#2f3363', width: 40, height: 40 }} />
                 </SearchButton>

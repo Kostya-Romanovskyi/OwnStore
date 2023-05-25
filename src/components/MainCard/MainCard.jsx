@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import ErrorPoster from '../../assets/ErrorPoster.jpg'
 import { Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./MainCard.styled"
 
-const MainCard = ({ id, title, poster, vote, date, genre }) => {
+const MainCard = ({ id, title, poster, vote, date, genre, location }) => {
 
     const truncateString = (str, maxLength) => {
         if (str.length > maxLength) {
@@ -23,7 +23,7 @@ const MainCard = ({ id, title, poster, vote, date, genre }) => {
                 <Statistic>{date}</Statistic>
                 <Statistic>{genre.map(genre => genre)}</Statistic>
             </FlexWrapp>
-            <Button to={`/search/${id}`}>film page</Button>
+            <Button to={`/search/${id}`} state={{ from: location }}>film page</Button>
         </Container>
     </>)
 }
@@ -35,5 +35,6 @@ MainCard.propTypes = {
     id: PropTypes.number.isRequired,
     vote: PropTypes.number.isRequired,
     poster: PropTypes.string,
-    genre: PropTypes.arrayOf(PropTypes.number).isRequired
+    genre: PropTypes.arrayOf(PropTypes.number).isRequired,
+    location: PropTypes.object.isRequired
 };

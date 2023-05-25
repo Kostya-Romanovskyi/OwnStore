@@ -27,7 +27,7 @@ export const FlexWrapp = styled.div`
 export const TitleFilm = styled.p`
   font-family: "Outfit", sans-serif;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.2%;
 
   margin-bottom: 30px;
