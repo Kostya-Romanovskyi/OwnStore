@@ -36,3 +36,14 @@ export const getReviewsById = createAsyncThunk("reviewsById", async (id) => {
     console.error(error);
   }
 });
+
+export const getImagesById = createAsyncThunk("reviewsById", async (id) => {
+  try {
+    const response = await axios.get(
+      `${MAIN_URL}/3/movie/${id}/images?api_key=${API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+});

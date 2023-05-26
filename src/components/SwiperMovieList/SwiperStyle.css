@@ -18,7 +18,7 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background-color: #1e1b33;
+  /* background-color: #1e1b33; */
   border-radius: 12px;
 
   height: auto;
@@ -129,4 +129,14 @@
 .swiper-button-next:after {
   content: "next";
   font-size: 20px;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
 }

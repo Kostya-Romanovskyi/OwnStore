@@ -15,7 +15,9 @@ export const TitleWrapp = styled.div`
   @media screen and (min-width: 768px) {
     align-items: flex-start;
 
-    margin-bottom: 0;
+    width: 50%;
+
+    margin-bottom: 45px;
   }
 `;
 
@@ -97,7 +99,7 @@ export const OverviewStyled = styled.p`
   color: #ffffff;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: auto;
+    margin-bottom: 40px;
   }
 `;
 
@@ -108,8 +110,9 @@ export const Img = styled.img`
     display: block;
 
     width: 44%;
+    height: 90%;
 
-    margin-left: 30px;
+    margin-left: 10px;
 
     border-radius: 10px;
   }

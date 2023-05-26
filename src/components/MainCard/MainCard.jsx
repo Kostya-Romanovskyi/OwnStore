@@ -22,7 +22,7 @@ const MainCard = ({ id, title, poster, vote, date, genre, location }) => {
 
     const genreNames = genre.map((id) => getGenreName(id));
 
-    return (<>
+    return (<div style={{ backgroundColor: '#1e1b33', borderRadius: 12, paddingBottom: 2 }}>
         <Poster src={poster !== null ? `https://image.tmdb.org/t/p/w500${poster}` : ErrorPoster} alt={title} />
         <Container>
             <FlexWrapp>
@@ -35,7 +35,7 @@ const MainCard = ({ id, title, poster, vote, date, genre, location }) => {
             </FlexWrapp>
             <Button to={`/search/${id}`} >film page</Button>
         </Container>
-    </>)
+    </div>)
 }
 export default MainCard
 
