@@ -2,23 +2,27 @@ import { useEffect, useState } from "react"
 import { getMoviesSearch } from "../../APIs/GetMoviesSearch"
 import { MainContainer, TitleStyled, StyledForm, CustomInput, SearchButton, StyledStack } from "./Search.styled"
 import { useDispatch, useSelector } from "react-redux"
-import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
 import { searchMoviesFull } from "../../Redux/Slices/SearchMoviesSlice";
 import { useSearchParams } from "react-router-dom";
 import SearchList from "../../components/SearchList/SearchList";
 import { TfiSearch } from 'react-icons/tfi'
+import { useLocation } from "react-router-dom"
+import { setPath } from "../../Redux/Slices/PathSlice"
 
 const Search = () => {
     const [currentPage, setCurrentPage] = useState(1)
 
     const [searchParams, setSearchParams] = useSearchParams()
 
+    const location = useLocation()
+
     const query = searchParams.get('query') ?? ""
 
     const searchMovieSel = useSelector(searchMoviesFull)
 
     const dispatch = useDispatch()
+
 
     const handleInputChange = (e) => {
 
@@ -48,9 +52,12 @@ const Search = () => {
 
     useEffect(() => {
         dispatch(getMoviesSearch({ currentPage, query }))
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage, dispatch])
+
+    useEffect(() => {
+        dispatch(setPath(location))
+    }, [dispatch, location])
 
     return (<main>
         <MainContainer>

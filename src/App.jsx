@@ -1,9 +1,10 @@
 // import { useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
+import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header/Header'
-import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Search from './pages/Search/Search'
 import Movie from './pages/Movie/Movie'
@@ -16,7 +17,7 @@ import Popular from './pages/Popular/Popular'
 import TopRated from './pages/TopRated/TopRated'
 import Upcoming from './pages/Upcoming/Upcoming'
 import Trending from './pages/Trending/Trending'
-import { useState } from 'react'
+
 
 
 

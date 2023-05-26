@@ -9,7 +9,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperStyle.css'
 
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
@@ -54,6 +53,7 @@ const SwiperMovieList = ({ title, link, moviesArray, selector }) => {
         };
 
     }, [dispatch, moviesArray]);
+
 
 
     return (

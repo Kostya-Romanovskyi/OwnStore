@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import ErrorPoster from '../../assets/ErrorPoster.jpg'
 import { Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./MainCard.styled"
+import { genres } from "../../Redux/Slices/GenresSlice"
+import { useSelector } from 'react-redux';
 
 const MainCard = ({ id, title, poster, vote, date, genre, location }) => {
+
+    const genresSel = useSelector(genres)
 
     const truncateString = (str, maxLength) => {
         if (str.length > maxLength) {
@@ -11,6 +15,12 @@ const MainCard = ({ id, title, poster, vote, date, genre, location }) => {
             return str;
         }
     }
+    const getGenreName = (id) => {
+        const genre = genresSel && genresSel.find((genre) => genre.id === id);
+        return genre ? genre.name : 'Unknown';
+    };
+
+    const genreNames = genre.map((id) => getGenreName(id));
 
     return (<>
         <Poster src={poster !== null ? `https://image.tmdb.org/t/p/w500${poster}` : ErrorPoster} alt={title} />
@@ -21,9 +31,9 @@ const MainCard = ({ id, title, poster, vote, date, genre, location }) => {
             </FlexWrapp>
             <FlexWrapp>
                 <Statistic>{date}</Statistic>
-                <Statistic>{genre.map(genre => genre)}</Statistic>
+                <Statistic>{genreNames[0]}</Statistic>
             </FlexWrapp>
-            <Button to={`/search/${id}`} state={{ from: location }}>film page</Button>
+            <Button to={`/search/${id}`} >film page</Button>
         </Container>
     </>)
 }
@@ -36,5 +46,5 @@ MainCard.propTypes = {
     vote: PropTypes.number.isRequired,
     poster: PropTypes.string,
     genre: PropTypes.arrayOf(PropTypes.number).isRequired,
-    location: PropTypes.object.isRequired
+    location: PropTypes.object
 };

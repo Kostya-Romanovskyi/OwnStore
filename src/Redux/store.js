@@ -8,6 +8,8 @@ import movieByIdSlice from "./Slices/MovieById";
 import castByIdSlice from "./Slices/CastById";
 import reviewsByIdSlice from "./Slices/ReviewsById";
 import searchMoviesSlice from "./Slices/SearchMoviesSlice";
+import genresSlice from "./Slices/GenresSlice";
+import pathSlice from "./Slices/PathSlice";
 
 export default configureStore({
   reducer: {
@@ -19,6 +21,8 @@ export default configureStore({
     castById: castByIdSlice,
     reviewsById: reviewsByIdSlice,
     searchMovies: searchMoviesSlice,
+    genres: genresSlice,
+    location: pathSlice,
   },
   middleware: [thunk],
 });

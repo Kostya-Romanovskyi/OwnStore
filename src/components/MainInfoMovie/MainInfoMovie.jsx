@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { useLocation, useParams } from "react-router-dom"
+import { pathBack } from "../../Redux/Slices/PathSlice"
 import PosterError from '../../assets/ErrorPoster.jpg'
 import { movieById } from "../../Redux/Slices/MovieById"
 import MainButton from "../MainButton/MainButton"
@@ -8,14 +9,14 @@ import { TitleWrapp, BackButton, Title, ImgMobile, OverviewStyled, Img, GenresLi
 const MainInfoMovie = () => {
     const { movieId } = useParams()
     const { title, status, genres, backdrop_path, poster_path, overview } = useSelector(movieById)
-    // const test = useSelector(movieById)
+
     const location = useLocation()
-    console.log(location)
+    const backPath = useSelector(pathBack)
 
     return (<>
 
         <TitleWrapp>
-            <BackButton to={location.state?.from ?? '/'}>Go back</BackButton>
+            <BackButton to={backPath?.pathname + backPath?.search ? backPath?.pathname + backPath?.search : '/'}>Go back</BackButton>
             <Title>{title}</Title>
             <ImgMobile src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
             <GenresList>

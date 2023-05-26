@@ -6,9 +6,9 @@ import Pagination from '@mui/material/Pagination';
 import AllMoviesList from "../AllMoviesList/AllMoviesList";
 import { MainContainer, StyledStack } from "./FullLayoutMovies.styled";
 
-const FullLayoutMovies = ({ categoryInfo, fetchMovies }) => {
+const FullLayoutMovies = ({ state, categoryInfo, fetchMovies }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    // console.log(categoryInfo)
+    console.log(state)
     const handlePageChange = (event, page) => {
         console.log(page)
         setCurrentPage(page);

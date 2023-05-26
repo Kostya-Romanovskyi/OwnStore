@@ -59,3 +59,14 @@ export const getTrandingMovies = createAsyncThunk(
     }
   }
 );
+
+export const getGenres = createAsyncThunk("genres", async () => {
+  try {
+    const response = await axios.get(
+      `${MAIN_URL}/3/genre/movie/list?api_key=${API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+});
