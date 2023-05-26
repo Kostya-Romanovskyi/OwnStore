@@ -37,12 +37,33 @@ export const getReviewsById = createAsyncThunk("reviewsById", async (id) => {
   }
 });
 
-export const getImagesById = createAsyncThunk("reviewsById", async (id) => {
+export const getImagesById = createAsyncThunk("imagesById", async (id) => {
   try {
     const response = await axios.get(
       `${MAIN_URL}/3/movie/${id}/images?api_key=${API_KEY}`
     );
     return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const getVideosById = createAsyncThunk("videosById", async (id) => {
+  try {
+    const response = await axios.get(
+      `${MAIN_URL}/3/movie/${id}/videos?api_key=${API_KEY}`
+    );
+
+    const trailers = response.data.results.filter(
+      (trailer) => trailer.type === "Trailer"
+    );
+    if (trailers.length > 0) {
+      const officialTrailerKey = trailers[0].key;
+      const officialTrailerUrl = `https://www.youtube.com/watch?v=${officialTrailerKey}`;
+      return officialTrailerUrl;
+    } else {
+      return null; // No official trailer found
+    }
   } catch (error) {
     console.error(error);
   }

@@ -8,6 +8,9 @@ import { getImagesById } from "../../APIs/GetById"
 import { TitleWrapp, BackButton, Title, ImgMobile, OverviewStyled, Img, GenresList, GenresItem, GenresText } from "./MainInfoMovie.styled"
 import { useEffect, useState, useRef } from "react"
 import { imagesEl } from "../../Redux/Slices/ImagesSlice"
+import { videosTrailer } from "../../Redux/Slices/VideosSlice"
+import YouTubeTrailer from "../YouTubeTrailer/YouTubeTrailer"
+import TrailerModal from "../Modal/Modal"
 
 
 import { FreeMode, Navigation, Thumbs } from "swiper";
@@ -29,8 +32,6 @@ const MainInfoMovie = () => {
     const location = useLocation()
     const backPath = useSelector(pathBack)
     const imageSel = useSelector(imagesEl)
-    console.log(imageSel)
-
 
     const debounce = (func, delay) => {
         let timeoutId;
@@ -74,8 +75,10 @@ const MainInfoMovie = () => {
 
             </GenresList>
             <OverviewStyled>{overview}</OverviewStyled>
+            <TrailerModal />
+            {/* <YouTubeTrailer /> */}
 
-            <div style={{ width: screenWidth < 1200 ? (screenWidth < 767 ? 350 : 385) : "100%", marginBottom: screenWidth > 1200 ? 60 : 0 }}>
+            <div style={{ width: screenWidth < 1200 ? (screenWidth < 767 ? 320 : 385) : "100%", marginBottom: screenWidth > 1200 ? 60 : 0 }}>
 
                 <Swiper style={{
                     "--swiper-navigation-color": "#fff",
