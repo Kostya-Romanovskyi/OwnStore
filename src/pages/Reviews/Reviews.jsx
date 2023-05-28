@@ -18,7 +18,7 @@ const Reviews = ({ backPath }) => {
 
     return (<main>
         <ScrollToTop />
-        <MainContainer>
+        <MainContainer className='app'>
             <BackLink to={backPath?.pathname ?? `/search/${movieId}`}>Go back</BackLink>
             <ReviewsList />
         </MainContainer>

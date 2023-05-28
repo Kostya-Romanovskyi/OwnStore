@@ -34,6 +34,13 @@ export const WatchAllLink = styled(Link)`
   text-decoration: none;
 
   color: rgba(224, 30, 90, 0.5);
+
+  transition: color 300ms;
+
+  &:hover,
+  &:focus {
+    color: #c2294a;
+  }
 `;
 
 export const ListWrapper = styled.ul`
@@ -120,6 +127,8 @@ export const card2 = css`
 `;
 
 export const Item = styled.li`
+  transition: box-shadow 300ms;
+
   &:hover,
   &:focus {
     box-shadow: 0 0 20px 6px #1e1b33;

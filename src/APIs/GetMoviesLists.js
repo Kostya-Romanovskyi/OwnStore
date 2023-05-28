@@ -70,3 +70,30 @@ export const getGenres = createAsyncThunk("genres", async () => {
     console.error(error);
   }
 });
+
+export const getNowPlaying = createAsyncThunk(
+  "nowPlaying",
+  async (page = 1) => {
+    try {
+      const response = await axios.get(
+        `${MAIN_URL}/3/movie/now_playing?api_key=${API_KEY}&page=${page}&language=en-US`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const getMovieByGenre = createAsyncThunk("movieByGenre", async (id) => {
+  try {
+    const response = await axios.get(
+      `${MAIN_URL}/3/movie/${id}/recommendations?api_key=${API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// https://api.themoviedb.org/3/movie/{movie_id}/recommendations

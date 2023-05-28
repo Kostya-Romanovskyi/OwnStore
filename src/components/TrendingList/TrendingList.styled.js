@@ -48,4 +48,11 @@ export const WatchAllLink = styled(Link)`
   text-decoration: none;
 
   color: rgba(224, 30, 90, 0.5);
+
+  transition: color 300ms;
+
+  &:hover,
+  &:focus {
+    color: #c2294a;
+  }
 `;

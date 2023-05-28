@@ -17,8 +17,8 @@ import Popular from './pages/Popular/Popular'
 import TopRated from './pages/TopRated/TopRated'
 import Upcoming from './pages/Upcoming/Upcoming'
 import Trending from './pages/Trending/Trending'
-
-
+import NowPlaying from './pages/NowPlaying/NowPlaying'
+import Footer from './components/Footer/Footer'
 
 
 function App() {
@@ -46,6 +46,8 @@ function App() {
 
                     <Route path="/trending" element={<Trending />} />
 
+                    <Route path="/nowplaying" element={<NowPlaying />} />
+
                     <Route path="/favorite" element={<Favorite />} />
 
                     <Route path="/library" element={<Library />} />
@@ -54,6 +56,8 @@ function App() {
 
                 </Route>
             </Routes>
+
+            <Footer />
         </div >
     )
 }

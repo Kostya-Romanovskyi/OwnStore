@@ -5,12 +5,11 @@ import PosterError from '../../assets/ErrorPoster.jpg'
 import { movieById } from "../../Redux/Slices/MovieById"
 import MainButton from "../MainButton/MainButton"
 import { getImagesById } from "../../APIs/GetById"
-import { TitleWrapp, BackButton, Title, ImgMobile, OverviewStyled, Img, GenresList, GenresItem, GenresText } from "./MainInfoMovie.styled"
-import { useEffect, useState, useRef } from "react"
+import { TitleWrapp, BackButton, Title, ImgMobile, OverviewStyled, MobileButtons, Img, GenresList, GenresItem, GenresText, PosterWrapper } from "./MainInfoMovie.styled"
+import { useEffect, useState } from "react"
 import { imagesEl } from "../../Redux/Slices/ImagesSlice"
-import { videosTrailer } from "../../Redux/Slices/VideosSlice"
-import YouTubeTrailer from "../YouTubeTrailer/YouTubeTrailer"
 import TrailerModal from "../Modal/Modal"
+import { getMovieByGenre } from "../../APIs/GetMoviesLists"
 
 
 import { FreeMode, Navigation, Thumbs } from "swiper";
@@ -19,7 +18,6 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-// import './styles.css'
 
 const MainInfoMovie = () => {
     const { movieId } = useParams()
@@ -58,14 +56,16 @@ const MainInfoMovie = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [dispatch, movieId])
+    }, [dispatch, genres, movieId])
 
     return (<>
 
         <TitleWrapp>
             <BackButton to={backPath?.pathname + backPath?.search ? backPath?.pathname + backPath?.search : '/'}>Go back</BackButton>
             <Title>{title}</Title>
+
             <ImgMobile src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+
             <GenresList>
                 {genres && genres.map(({ id, name }) => {
                     return (<GenresItem key={id}>
@@ -74,9 +74,16 @@ const MainInfoMovie = () => {
                 })}
 
             </GenresList>
+
             <OverviewStyled>{overview}</OverviewStyled>
+
+            <MobileButtons>
+                <button type="button">add</button>
+                <button type="button">delete</button>
+            </MobileButtons>
+
+
             <TrailerModal />
-            {/* <YouTubeTrailer /> */}
 
             <div style={{ width: screenWidth < 1200 ? (screenWidth < 767 ? 320 : 385) : "100%", marginBottom: screenWidth > 1200 ? 60 : 0 }}>
 
@@ -130,7 +137,12 @@ const MainInfoMovie = () => {
 
         </TitleWrapp >
 
-        <Img src={poster_path !== null ? `https://image.tmdb.org/t/p/w500${poster_path}` : PosterError} alt={title} />
+        <PosterWrapper>
+            <Img src={poster_path !== null ? `https://image.tmdb.org/t/p/w500${poster_path}` : PosterError} alt={title} />
+            <button type="button">add</button>
+            <button type="button">delete</button>
+        </PosterWrapper>
+
     </>)
 }
 export default MainInfoMovie

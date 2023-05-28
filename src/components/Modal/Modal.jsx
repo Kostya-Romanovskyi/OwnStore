@@ -29,7 +29,7 @@ const TrailerModal = () => {
                     <YouTubeTrailer />
 
                     <CloseButton variant="contained" color="primary" onClick={handleClose}>
-                        <AiOutlineClose style={{ color: '#ffffff' }} size={32} />
+                        <AiOutlineClose style={{ color: '#ffffff', width: 32, heigh: 32 }} size={32} />
                     </CloseButton>
                 </ModalContainer>
 

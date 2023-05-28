@@ -1,10 +1,10 @@
 import ruby from '../../assets/ruby.png'
 
-import { InfoSearchWrapp, RubyImg, InfoWrapp, TitleSearch, InfoSearch, SearchButton } from './SectionSearch.styled'
+import { SectionStyled, InfoSearchWrapp, RubyImg, InfoWrapp, TitleSearch, InfoSearch, SearchButton } from './SectionSearch.styled'
 
 const SectionSearch = () => {
     return (
-        <section>
+        <SectionStyled>
             <InfoSearchWrapp>
                 <RubyImg src={ruby} alt="Ruby" />
                 <InfoWrapp>
@@ -14,7 +14,7 @@ const SectionSearch = () => {
                 </InfoWrapp>
             </InfoSearchWrapp>
 
-        </section>
+        </SectionStyled>
     )
 }
 export default SectionSearch

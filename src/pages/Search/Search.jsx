@@ -60,7 +60,7 @@ const Search = () => {
     }, [dispatch, location])
 
     return (<main>
-        <MainContainer>
+        <MainContainer className="app">
 
             <TitleStyled>Find your favorite movie</TitleStyled>
 

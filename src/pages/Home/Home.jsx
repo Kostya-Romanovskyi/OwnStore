@@ -2,7 +2,7 @@ import SwiperMovieList from "../../components/SwiperMovieList/SwiperMovieList"
 import UpcomingList from "../../components/UpcomingList/UpcomingList"
 import TrendingList from "../../components/TrendingList/TrendingList"
 import SectionSearch from "../../components/SectionSearch/SectionSearch"
-import { getPopularMovies, getTopRatedMovies } from "../../APIs/GetMoviesLists"
+import { getPopularMovies, getTopRatedMovies, getNowPlaying } from "../../APIs/GetMoviesLists"
 import { getGenres } from "../../APIs/GetMoviesLists"
 import { topRatedMovies } from "../../Redux/Slices/TopRatedMoviesSlice"
 import { popularMovies } from "../../Redux/Slices/PopularMoviesSlice"
@@ -10,15 +10,14 @@ import { MainContainer, MainTitle, DecorateTitle, DecorateSircle } from "./Home.
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { genres } from "../../Redux/Slices/GenresSlice"
 import { setPath } from "../../Redux/Slices/PathSlice"
+import { nowPlaying } from "../../Redux/Slices/NowPlaingSlice"
 
 const Home = () => {
     const popularMoviesSel = useSelector(popularMovies)
     const TopRatedMovieSel = useSelector(topRatedMovies)
+    const nowPlayingMovieSel = useSelector(nowPlaying)
 
-    const sel = useSelector(genres)
-    console.log(sel)
 
     const location = useLocation()
 
@@ -41,6 +40,7 @@ const Home = () => {
                 <SwiperMovieList title='Top Rated ' link={`/toprated`} moviesArray={getTopRatedMovies} selector={TopRatedMovieSel} />
                 <TrendingList />
                 <SectionSearch />
+                <SwiperMovieList title='Now Playing ' link={`/nowplaying`} moviesArray={getNowPlaying} selector={nowPlayingMovieSel} />
             </MainContainer>
         </main>
     )

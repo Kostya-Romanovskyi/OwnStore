@@ -103,18 +103,38 @@ export const OverviewStyled = styled.p`
   }
 `;
 
-export const Img = styled.img`
+export const MobileButtons = styled.div`
+  display: none;
+
+  @media screen and (max-width: 767px) {
+    display: block;
+  }
+`;
+
+export const PosterWrapper = styled.div`
   display: none;
 
   @media screen and (min-width: 768px) {
     display: block;
 
-    width: 44%;
-    height: 90%;
-
-    margin-left: 10px;
+    margin-left: 30px;
 
     border-radius: 10px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    display: block;
+
+    margin-left: 182px;
+
+    border-radius: 10px;
+  }
+`;
+
+export const Img = styled.img`
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    height: 68%;
   }
 `;
 

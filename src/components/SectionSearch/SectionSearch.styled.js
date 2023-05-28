@@ -1,10 +1,16 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
+export const SectionStyled = styled.section`
+  margin-bottom: 40px;
+`;
+
 export const InfoSearchWrapp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding: 30px 0;
 
   border-top: 1px solid rgba(231, 231, 231, 0.24);
   border-bottom: 1px solid rgba(231, 231, 231, 0.24);

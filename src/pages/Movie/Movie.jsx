@@ -7,6 +7,7 @@ import { getMovieById, getVideosById } from "../../APIs/GetById"
 import ScrollToTop from "../../components/ScrollToTop"
 import MainInfoMovie from "../../components/MainInfoMovie/MainInfoMovie"
 import MoreInfoMovie from "../../components/MoreInfoMovie/MoreInfoMovie"
+import GenresSwiper from '../../components/GenresSwiper/GenresSwiper';
 
 import { MainContainer, FlexWrapp } from "./Movie.styled"
 
@@ -35,6 +36,9 @@ const Movie = ({ pathCast }) => {
                 <div>
                     <MoreInfoMovie />
                 </div>
+
+                <GenresSwiper />
+
             </MainContainer>
         </main >
     )
