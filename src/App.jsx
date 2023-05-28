@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
@@ -50,6 +50,8 @@ function App() {
                     <Route path="/library" element={<Library />} />
 
                     <Route path="/about" element={<About />} />
+
+                    <Route path="*" element={<Navigate to='/' />} />
 
                 </Route>
             </Routes>
