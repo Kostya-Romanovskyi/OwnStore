@@ -9,11 +9,11 @@ import store from './Redux/store.js';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    // <React.StrictMode>
-    <Provider store={store}>
-        <BrowserRouter basename="/own-store/">
-            <App />
-        </BrowserRouter>
-    </Provider>
-    // {/* </React.StrictMode>, */ }
+    <React.StrictMode>
+        <Provider store={store}>
+            <BrowserRouter basename="/own-cinema">
+                <App />
+            </BrowserRouter>
+        </Provider>
+    </React.StrictMode>,
 )
