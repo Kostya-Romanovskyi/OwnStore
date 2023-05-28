@@ -99,4 +99,6 @@ export const SearchButton = styled.button`
 
   background: transparent;
   border: none;
+
+  cursor: pointer;
 `;

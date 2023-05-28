@@ -16,7 +16,7 @@ const Cast = ({ backPath }) => {
         dispatch(getCastById(movieId))
     }, [dispatch, movieId])
 
-    return (<main>
+    return (<main className='app'>
         <ScrollToTop />
         <MainContainer>
             <BackLink to={backPath?.pathname ?? `/search/${movieId}`}>Go back</BackLink>
