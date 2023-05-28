@@ -10,7 +10,7 @@ export const Poster = styled.img`
   border-radius: 25px;
 
   @media screen and (min-width: 768px) {
-    height: 262px;
+    height: 280px;
   }
 `;
 

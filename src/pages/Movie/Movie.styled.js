@@ -19,7 +19,7 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const FlexWrapp = styled.div`
+export const FlexWrapp = styled.section`
   display: flex;
   justify-content: space-between;
 

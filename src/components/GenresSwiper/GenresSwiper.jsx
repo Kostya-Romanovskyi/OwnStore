@@ -1,18 +1,22 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Autoplay, Pagination, Navigation } from 'swiper';
+
 import { getMovieByGenre } from '../../APIs/GetMoviesLists';
 import { moviesByGenres } from '../../Redux/Slices/MoviesByGenreSlice';
 import MainCard from '../MainCard/MainCard';
 import ScrollToTop from '../ScrollToTop';
 import { useParams } from 'react-router-dom';
+import { getGenres } from '../../APIs/GetMoviesLists';
+import { Plug } from './GenresSwiper.styled';
 
 const GenresSwiper = () => {
     const moviesByGenresSel = useSelector(moviesByGenres)
+
     const { movieId } = useParams()
 
 
@@ -42,7 +46,7 @@ const GenresSwiper = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
+        dispatch(getGenres())
         dispatch(getMovieByGenre(movieId))
 
         const handleResize = debounce(() => {
@@ -60,43 +64,48 @@ const GenresSwiper = () => {
 
 
     return (<>
+        {moviesByGenresSel && moviesByGenresSel.length !== 0 ?
+            <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
+                slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
+                autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    speed: 100,
+                }}
+                pagination={{
+                    clickable: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                onAutoplayTimeLeft={onAutoplayTimeLeft}
+            >
+                {moviesByGenresSel && moviesByGenresSel.map(({ id, title, poster_path, vote_average, release_date, genre_ids
+                }) => {
+                    return (
+                        <SwiperSlide key={id}>
 
-        <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
-            slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
-            autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-                speed: 100,
-            }}
-            pagination={{
-                clickable: true,
-            }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-            onAutoplayTimeLeft={onAutoplayTimeLeft}
-        >
-            {moviesByGenresSel && moviesByGenresSel.map(({ id, title, poster_path, vote_average, release_date, genre_ids
-            }) => {
-                return (
+                            <ScrollToTop />
 
-                    <SwiperSlide key={id}>
-                        <ScrollToTop />
-                        <MainCard id={id}
-                            title={title}
-                            poster={poster_path}
-                            vote={vote_average}
-                            date={release_date}
-                            genre={genre_ids} />
-                    </SwiperSlide>)
-            })}
+                            <MainCard id={id}
+                                title={title}
+                                poster={poster_path}
+                                vote={vote_average}
+                                date={release_date}
+                                genre={genre_ids} />
 
-            <div className="autoplay-progress" slot="container-end">
-                <svg viewBox="0 0 48 48" ref={progressCircle}>
-                    <circle cx="24" cy="24" r="20"></circle>
-                </svg>
-                <span className="progressContent" ref={progressContent}></span>
-            </div>
-        </Swiper>
+                        </SwiperSlide>)
+                })}
+
+                <div className="autoplay-progress" slot="container-end">
+                    <svg viewBox="0 0 48 48" ref={progressCircle}>
+                        <circle cx="24" cy="24" r="20"></circle>
+                    </svg>
+                    <span className="progressContent" ref={progressContent}></span>
+                </div>
+            </Swiper> :
+
+            <Plug>We haven't similar movies by genres</Plug>}
+
     </>)
 }
 export default GenresSwiper

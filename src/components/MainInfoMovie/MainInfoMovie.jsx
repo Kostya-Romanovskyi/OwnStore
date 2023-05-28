@@ -5,12 +5,10 @@ import PosterError from '../../assets/ErrorPoster.jpg'
 import { movieById } from "../../Redux/Slices/MovieById"
 import MainButton from "../MainButton/MainButton"
 import { getImagesById } from "../../APIs/GetById"
-import { TitleWrapp, BackButton, Title, ImgMobile, OverviewStyled, MobileButtons, Img, GenresList, GenresItem, GenresText, PosterWrapper } from "./MainInfoMovie.styled"
+import { TitleWrapp, BackButton, Title, Status, ImgMobile, OverviewStyled, MobileButtons, Img, GenresList, GenresItem, GenresText, PosterWrapper } from "./MainInfoMovie.styled"
 import { useEffect, useState } from "react"
 import { imagesEl } from "../../Redux/Slices/ImagesSlice"
 import TrailerModal from "../Modal/Modal"
-import { getMovieByGenre } from "../../APIs/GetMoviesLists"
-
 
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,11 +19,12 @@ import "swiper/css/thumbs";
 
 const MainInfoMovie = () => {
     const { movieId } = useParams()
-    const { title, status, genres, backdrop_path, poster_path, overview } = useSelector(movieById)
+    const { title, status, genres, poster_path, overview } = useSelector(movieById)
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const dispatch = useDispatch()
+    console.log(status)
 
     const location = useLocation()
     const backPath = useSelector(pathBack)
@@ -63,6 +62,7 @@ const MainInfoMovie = () => {
         <TitleWrapp>
             <BackButton to={backPath?.pathname + backPath?.search ? backPath?.pathname + backPath?.search : '/'}>Go back</BackButton>
             <Title>{title}</Title>
+            <Status props={status}>{status}</Status>
 
             <ImgMobile src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
 

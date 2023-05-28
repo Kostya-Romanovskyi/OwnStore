@@ -10,6 +10,10 @@ export const MoreInfoStyled = styled.h3`
   color: rgba(231, 231, 231, 0.24);
 `;
 
+export const SectionMore = styled.div`
+  margin-bottom: 40px;
+`;
+
 export const Info = styled.span`
   font-weight: 400;
   font-size: 20px;

@@ -43,7 +43,7 @@ const Search = () => {
     const handleResponse = (e) => {
         e.preventDefault()
 
-        if (query === null) {
+        if (query === '') {
             return
         }
 

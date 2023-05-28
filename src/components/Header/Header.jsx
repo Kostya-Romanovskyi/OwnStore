@@ -44,13 +44,13 @@ const Header = () => {
                         <Navigation>
                             <NavList>
                                 <NavItem>
-                                    <NavLink onClick={handleToggle} to="/search">
-                                        Search
+                                    <NavLink onClick={handleToggle} to="/">
+                                        Home
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink onClick={handleToggle} to="/favorite">
-                                        Favorite
+                                    <NavLink onClick={handleToggle} to="/search">
+                                        Search
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>

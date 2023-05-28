@@ -33,9 +33,9 @@ const Movie = ({ pathCast }) => {
                 <FlexWrapp>
                     <MainInfoMovie />
                 </FlexWrapp>
-                <div>
+                <section>
                     <MoreInfoMovie />
-                </div>
+                </section>
 
                 <GenresSwiper />
 

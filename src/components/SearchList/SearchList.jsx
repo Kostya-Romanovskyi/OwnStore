@@ -4,8 +4,6 @@ import { GridList, Item } from './SearchList.styled';
 import { useLocation } from 'react-router-dom';
 
 const SearchList = ({ list }) => {
-    console.log(list)
-
     const location = useLocation()
 
     return <GridList>

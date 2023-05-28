@@ -21,6 +21,23 @@ export const TitleWrapp = styled.div`
   }
 `;
 
+export const Status = styled.p`
+  position: absolute;
+  top: -3%;
+  right: 11%;
+
+  color: ${({ props }) => (props === "Released" ? "#486e4a" : "red")};
+
+  @media screen and (min-width: 768px) {
+    top: -6%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    top: 0;
+    right: 0;
+  }
+`;
+
 export const BackButton = styled(Link)`
   position: absolute;
   top: -45px;
@@ -69,8 +86,6 @@ export const Title = styled.h2`
   line-height: 1.25;
 
   letter-spacing: -0.014em;
-
-  margin-bottom: 30px;
 
   color: #ffffff;
 `;
@@ -135,6 +150,11 @@ export const Img = styled.img`
   @media screen and (min-width: 768px) {
     width: 100%;
     height: 68%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 100%;
+    height: auto;
   }
 `;
 

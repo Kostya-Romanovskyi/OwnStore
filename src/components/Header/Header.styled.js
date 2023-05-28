@@ -168,7 +168,7 @@ export const NavLink = styled(Link)`
 
   text-decoration: none;
 
-  color: #ffffff;
+  color: #c0c0c0;
 
   @media screen and (min-width: 768px) {
     font-size: 1rem;
@@ -176,6 +176,11 @@ export const NavLink = styled(Link)`
 
   @media screen and (min-width: 1200px) {
     font-size: 1.1rem;
+  }
+
+  &:hover,
+  &:focus {
+    color: #ffffff;
   }
 `;
 

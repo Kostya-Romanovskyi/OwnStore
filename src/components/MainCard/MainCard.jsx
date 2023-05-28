@@ -4,7 +4,7 @@ import { Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./Ma
 import { genres } from "../../Redux/Slices/GenresSlice"
 import { useSelector } from 'react-redux';
 
-const MainCard = ({ id, title, poster, vote, date, genre, location }) => {
+const MainCard = ({ id, title, poster, vote, date, genre }) => {
 
     const genresSel = useSelector(genres)
 
