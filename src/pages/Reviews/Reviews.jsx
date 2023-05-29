@@ -8,6 +8,7 @@ import ScrollToTop from "../../components/ScrollToTop"
 import ReviewsList from "../../components/ReviewsList/ReviewsList"
 import { CircleLoader } from "react-spinners"
 import { reviewsByIdLoading } from '../../Redux/Slices/ReviewsById';
+import ScrollTopBtn from '../../components/ScrollTopBtn/ScrollTopBtn';
 
 const Reviews = ({ backPath }) => {
     const dispatch = useDispatch()
@@ -33,6 +34,8 @@ const Reviews = ({ backPath }) => {
                 loading
                 size={70}
             />}
+
+            <ScrollTopBtn />
 
         </main>)
 }

@@ -9,6 +9,8 @@ import { useParams } from "react-router-dom"
 import ActorsList from "../../components/ActorsList/ActorsList"
 import { MainContainer, BackLink } from "./Cast.styled"
 import ScrollToTop from "../../components/ScrollToTop"
+import ScrollTopBtn from '../../components/ScrollTopBtn/ScrollTopBtn';
+
 
 const Cast = ({ backPath }) => {
     const dispatch = useDispatch()
@@ -35,6 +37,8 @@ const Cast = ({ backPath }) => {
                 loading
                 size={70}
             />}
+
+        <ScrollTopBtn />
 
     </main>)
 }

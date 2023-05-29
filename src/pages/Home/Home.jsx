@@ -15,6 +15,7 @@ import { nowPlaying } from "../../Redux/Slices/NowPlaingSlice"
 import { popularMoviesLoading } from "../../Redux/Slices/PopularMoviesSlice"
 import { upcomingMoviesLoading } from "../../Redux/Slices/UpcomingMoviesSlice"
 import { topRatedMoviesLoading } from "../../Redux/Slices/TopRatedMoviesSlice"
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn"
 
 
 const Home = () => {
@@ -48,6 +49,7 @@ const Home = () => {
                 <TrendingList />
                 <SectionSearch />
                 <SwiperMovieList title='Now Playing ' link={`/nowplaying`} loading={nowPlayingLoading} moviesArray={getNowPlaying} selector={nowPlayingMovieSel} />
+                <ScrollTopBtn />
             </MainContainer>
         </main>
     )
