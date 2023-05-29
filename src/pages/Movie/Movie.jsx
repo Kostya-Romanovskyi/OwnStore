@@ -30,31 +30,31 @@ const Movie = ({ pathCast }) => {
     }, [pathCast, dispatch, location, movieId])
 
     return (
-        <main className='app'>
+        <main >
 
             <ScrollToTop />
+            <MainContainer className='app'>
+                {!movieByIdSel ?
+                    <>
+                        <FlexWrapp>
+                            <MainInfoMovie />
+                        </FlexWrapp>
 
-            {!movieByIdSel ? <MainContainer>
+                        <section>
+                            <MoreInfoMovie />
+                        </section>
 
-                <FlexWrapp>
-                    <MainInfoMovie />
-                </FlexWrapp>
+                        <GenresSwiper />
 
-                <section>
-                    <MoreInfoMovie />
-                </section>
-
-                <GenresSwiper />
-
+                    </>
+                    :
+                    <CircleLoader
+                        color="#8b36d6"
+                        cssOverride={{ margin: '0 auto' }}
+                        loading
+                        size={70}
+                    />}
             </MainContainer>
-                :
-                <CircleLoader
-                    color="#8b36d6"
-                    cssOverride={{ margin: '0 auto' }}
-                    loading
-                    size={70}
-                />}
-
         </main >
     )
 }
