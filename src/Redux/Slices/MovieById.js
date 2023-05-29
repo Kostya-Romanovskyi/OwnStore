@@ -23,3 +23,4 @@ export default movieByIdSlice.reducer;
 
 //Selectors
 export const movieById = (state) => state.movieById.movieInfo;
+export const movieByIdLoading = (state) => state.movieById.loading;

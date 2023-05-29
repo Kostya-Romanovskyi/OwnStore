@@ -9,6 +9,7 @@ import SearchList from "../../components/SearchList/SearchList";
 import { TfiSearch } from 'react-icons/tfi'
 import { useLocation } from "react-router-dom"
 import { setPath } from "../../Redux/Slices/PathSlice"
+import ScrollToTop from "../../components/ScrollToTop";
 
 const Search = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -61,6 +62,8 @@ const Search = () => {
 
     return (<main>
         <MainContainer className="app">
+
+            <ScrollToTop />
 
             <TitleStyled>Find your favorite movie</TitleStyled>
 

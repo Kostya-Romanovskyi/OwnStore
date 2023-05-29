@@ -26,3 +26,4 @@ export const trandingMovies = (state) =>
   state.trandingMovies.moviesInfo.results;
 
 export const trandingMoviesFull = (state) => state.trandingMovies.moviesInfo;
+export const trandingMoviesLoading = (state) => state.trandingMovies.loading;

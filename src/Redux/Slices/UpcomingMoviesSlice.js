@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getUpcomingMovies } from "../../APIs/GetMoviesLists";
 
 export const upcomingMoviesSlice = createSlice({
-  name: "popularMovies",
+  name: "upcomingMovies",
   initialState: { moviesInfo: {}, loading: false },
   reducers: {},
   extraReducers: (builder) => {
@@ -26,3 +26,4 @@ export const upcomingMovies = (state) =>
   state.upcomingMovies.moviesInfo.results;
 
 export const upcomingMoviesFull = (state) => state.upcomingMovies.moviesInfo;
+export const upcomingMoviesLoading = (state) => state.upcomingMovies.loading;

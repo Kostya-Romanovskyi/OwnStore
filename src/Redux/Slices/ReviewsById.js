@@ -23,3 +23,4 @@ export default reviewsByIdSlice.reducer;
 
 //Selectors
 export const reviewsById = (state) => state.reviewsById.movieInfo;
+export const reviewsByIdLoading = (state) => state.reviewsById.loading;

@@ -1,28 +1,40 @@
 import PropTypes from 'prop-types';
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getReviewsById } from "../../APIs/GetById"
 import { useParams } from "react-router-dom"
 import { MainContainer, BackLink } from "./Reviews.styled"
 import ScrollToTop from "../../components/ScrollToTop"
 import ReviewsList from "../../components/ReviewsList/ReviewsList"
+import { CircleLoader } from "react-spinners"
+import { reviewsByIdLoading } from '../../Redux/Slices/ReviewsById';
 
 const Reviews = ({ backPath }) => {
     const dispatch = useDispatch()
     const { movieId } = useParams()
-    console.log(movieId)
+
+    const reviewsLoading = useSelector(reviewsByIdLoading)
 
     useEffect(() => {
         dispatch(getReviewsById(movieId))
     }, [dispatch, movieId])
 
-    return (<main>
-        <ScrollToTop />
-        <MainContainer className='app'>
-            <BackLink to={backPath?.pathname ?? `/search/${movieId}`}>Go back</BackLink>
-            <ReviewsList />
-        </MainContainer>
-    </main>)
+    return (
+        <main className='app'>
+
+            <ScrollToTop />
+
+            {!reviewsLoading ? <MainContainer >
+                <BackLink to={backPath?.pathname ?? `/search/${movieId}`}>Go back</BackLink>
+                <ReviewsList />
+            </MainContainer> : <CircleLoader
+                color="#8b36d6"
+                cssOverride={{ margin: '0 auto' }}
+                loading
+                size={70}
+            />}
+
+        </main>)
 }
 export default Reviews
 

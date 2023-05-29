@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useParams } from "react-router-dom"
 import { getMovieById, getVideosById } from "../../APIs/GetById"
+import { movieByIdLoading } from '../../Redux/Slices/MovieById';
+import { CircleLoader } from "react-spinners"
 
 import ScrollToTop from "../../components/ScrollToTop"
 import MainInfoMovie from "../../components/MainInfoMovie/MainInfoMovie"
@@ -15,9 +17,10 @@ const Movie = ({ pathCast }) => {
     const dispatch = useDispatch()
     const { movieId } = useParams()
 
-    const location = useLocation()
-    console.log(location)
+    const movieByIdSel = useSelector(movieByIdLoading)
+    console.log(movieByIdSel && movieByIdSel)
 
+    const location = useLocation()
 
     useEffect(() => {
         pathCast(location)
@@ -27,12 +30,16 @@ const Movie = ({ pathCast }) => {
     }, [pathCast, dispatch, location, movieId])
 
     return (
-        <main>
+        <main className='app'>
+
             <ScrollToTop />
-            <MainContainer>
+
+            {!movieByIdSel ? <MainContainer>
+
                 <FlexWrapp>
                     <MainInfoMovie />
                 </FlexWrapp>
+
                 <section>
                     <MoreInfoMovie />
                 </section>
@@ -40,6 +47,14 @@ const Movie = ({ pathCast }) => {
                 <GenresSwiper />
 
             </MainContainer>
+                :
+                <CircleLoader
+                    color="#8b36d6"
+                    cssOverride={{ margin: '0 auto' }}
+                    loading
+                    size={70}
+                />}
+
         </main >
     )
 }

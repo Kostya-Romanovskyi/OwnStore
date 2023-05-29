@@ -8,11 +8,12 @@ import 'swiper/swiper.min.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperStyle.css'
+import { CircleLoader } from "react-spinners"
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
-const SwiperMovieList = ({ title, link, moviesArray, selector }) => {
+const SwiperMovieList = ({ title, link, loading, moviesArray, selector }) => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
 
@@ -57,46 +58,56 @@ const SwiperMovieList = ({ title, link, moviesArray, selector }) => {
 
 
     return (
-        <Section>
+        <>
+            {!loading ? <Section>
 
-            <PopularMovies>{title}<WatchAllLink to={link}>watch all</WatchAllLink></PopularMovies>
+                <PopularMovies>{title}<WatchAllLink to={link}>watch all</WatchAllLink></PopularMovies>
 
-            <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
-                slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
-                autoplay={{
-                    delay: 5000,
-                    disableOnInteraction: false,
-                    speed: 100,
-                }}
-                pagination={{
-                    clickable: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
-                onAutoplayTimeLeft={onAutoplayTimeLeft}
-            >
-                {selector && selector.map(({ id, title, poster_path, vote_average, release_date, genre_ids
-                }) => {
-                    return (
+                <Swiper spaceBetween={screenWidth > 1200 ? 20 : (screenWidth > 768 ? 40 : 50)}
+                    slidesPerView={screenWidth > 1200 ? 5 : (screenWidth > 768 ? 3 : 1)}
+                    autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: false,
+                        speed: 100,
+                    }}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation={true}
+                    modules={[Autoplay, Pagination, Navigation]}
+                    onAutoplayTimeLeft={onAutoplayTimeLeft}
+                >
+                    {selector && selector.map(({ id, title, poster_path, vote_average, release_date, genre_ids
+                    }) => {
+                        return (
 
-                        <SwiperSlide key={id}>
-                            <MainCard id={id}
-                                title={title}
-                                poster={poster_path}
-                                vote={vote_average}
-                                date={release_date}
-                                genre={genre_ids} />
-                        </SwiperSlide>)
-                })}
+                            <SwiperSlide key={id}>
+                                <MainCard id={id}
+                                    title={title}
+                                    poster={poster_path}
+                                    vote={vote_average}
+                                    date={release_date}
+                                    genre={genre_ids} />
+                            </SwiperSlide>)
+                    })}
 
-                <div className="autoplay-progress" slot="container-end">
-                    <svg viewBox="0 0 48 48" ref={progressCircle}>
-                        <circle cx="24" cy="24" r="20"></circle>
-                    </svg>
-                    <span className="progressContent" ref={progressContent}></span>
-                </div>
-            </Swiper>
-        </Section>
+                    <div className="autoplay-progress" slot="container-end">
+                        <svg viewBox="0 0 48 48" ref={progressCircle}>
+                            <circle cx="24" cy="24" r="20"></circle>
+                        </svg>
+                        <span className="progressContent" ref={progressContent}></span>
+                    </div>
+                </Swiper>
+            </Section>
+                :
+                <CircleLoader
+                    color="#8b36d6"
+                    cssOverride={{ margin: '0 auto' }}
+                    loading
+                    size={70}
+                />}
+
+        </>
     )
 }
 
@@ -105,6 +116,7 @@ export default SwiperMovieList;
 SwiperMovieList.propTypes = {
     title: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
+    loading: PropTypes.bool.isRequired,
     moviesArray: PropTypes.func.isRequired,
     selector: PropTypes.arrayOf(PropTypes.object)
 };
