@@ -2,9 +2,12 @@ import PropTypes from 'prop-types';
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useParams } from "react-router-dom"
-import { getMovieById, getVideosById } from "../../APIs/GetById"
+import { getMovieById, getVideosById, getImagesById } from "../../APIs/GetById"
 import { movieByIdLoading } from '../../Redux/Slices/MovieById';
 import { CircleLoader } from "react-spinners"
+import { fetchMovies } from '../../APIs/LibraryAPI';
+import { getGenres } from '../../APIs/GetMoviesLists';
+import { getMovieByGenre } from '../../APIs/GetMoviesLists';
 
 import ScrollToTop from "../../components/ScrollToTop"
 import MainInfoMovie from "../../components/MainInfoMovie/MainInfoMovie"
@@ -18,7 +21,6 @@ const Movie = ({ pathCast }) => {
     const { movieId } = useParams()
 
     const movieByIdSel = useSelector(movieByIdLoading)
-    console.log(movieByIdSel && movieByIdSel)
 
     const location = useLocation()
 
@@ -26,6 +28,10 @@ const Movie = ({ pathCast }) => {
         pathCast(location)
         dispatch(getMovieById(movieId))
         dispatch(getVideosById(movieId))
+        dispatch(getImagesById(movieId))
+        dispatch(fetchMovies())
+        dispatch(getGenres())
+        getMovieByGenre(movieId)
 
     }, [pathCast, dispatch, location, movieId])
 

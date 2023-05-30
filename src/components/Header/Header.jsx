@@ -1,6 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
-// import { Suspense } from "react"
 import Logo from "../../assets/Logo.png";
 import {
     HeaderBackground,
@@ -21,10 +20,12 @@ import {
 } from "../Header/Header.styled";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { TfiClose } from 'react-icons/tfi';
+import { useLocation } from "react-router-dom";
 
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { pathname } = useLocation()
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -44,22 +45,26 @@ const Header = () => {
                         <Navigation>
                             <NavList>
                                 <NavItem>
-                                    <NavLink onClick={handleToggle} to="/">
+                                    <NavLink onClick={handleToggle} to="/"
+                                        style={{ color: pathname === '/' ? "#ffffff" : "#c0c0c0" }}>
                                         Home
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink onClick={handleToggle} to="/search">
+                                    <NavLink onClick={handleToggle} to="/search"
+                                        style={{ color: pathname === '/search' ? "#ffffff" : "#c0c0c0" }}>
                                         Search
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink onClick={handleToggle} to="/library">
+                                    <NavLink onClick={handleToggle} to="/library"
+                                        style={{ color: pathname === '/library' ? "#ffffff" : "#c0c0c0" }}>
                                         Library
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink onClick={handleToggle} to="/about">
+                                    <NavLink onClick={handleToggle} to="/about"
+                                        style={{ color: pathname === '/about' ? "#ffffff" : "#c0c0c0" }}>
                                         About us
                                     </NavLink>
                                 </NavItem>

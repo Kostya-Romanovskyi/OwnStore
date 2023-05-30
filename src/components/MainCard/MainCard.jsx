@@ -5,7 +5,6 @@ import { genres } from "../../Redux/Slices/GenresSlice"
 import { useSelector } from 'react-redux';
 
 const MainCard = ({ id, title, poster, vote, date, genre }) => {
-
     const genresSel = useSelector(genres)
 
     const truncateString = (str, maxLength) => {

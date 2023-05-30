@@ -14,8 +14,6 @@ const NowPlaying = () => {
     const dispatch = useDispatch()
 
     const nowPlayingInfotSel = useSelector(nowPlayingFull)
-    console.log(location)
-    console.log(nowPlayingInfotSel)
 
     useEffect(() => {
         dispatch(setPath(location))
@@ -25,7 +23,7 @@ const NowPlaying = () => {
         <MainContainer>
             <ScrollToTop />
             <NowPlayingMovies>Now Playing movies</NowPlayingMovies>
-            <FullLayoutMovies state={location} categoryInfo={nowPlayingInfotSel} fetchMovies={getNowPlaying} />
+            <FullLayoutMovies categoryInfo={nowPlayingInfotSel} fetchMovies={getNowPlaying} />
         </MainContainer>
     </>)
 }

@@ -122,7 +122,12 @@ export const MobileButtons = styled.div`
   display: none;
 
   @media screen and (max-width: 767px) {
-    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    margin-bottom: 30px;
   }
 `;
 
@@ -150,6 +155,8 @@ export const Img = styled.img`
   @media screen and (min-width: 768px) {
     width: 100%;
     height: 68%;
+
+    margin-bottom: 20px;
   }
 
   @media screen and (min-width: 1200px) {
@@ -173,4 +180,41 @@ export const GenresText = styled.p`
   line-height: 18px;
 
   color: rgba(231, 231, 231, 0.24);
+`;
+
+export const StyledButton = styled.button`
+  padding: 8px 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  color: #ffffff;
+  transition: box-shadow 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  @media screen and (min-width: 1200px) {
+    padding: 12px 20px 12px 20px;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: ${({ props }) =>
+      props === true
+        ? ""
+        : "0px 0px 20px 5px rgba(5, 0, 250, 0.5), 0px 0px 20px 5px rgba(224, 30, 90, 0.5)"};
+  }
+
+  background: ${({ props }) =>
+    props === true
+      ? "transparent"
+      : "linear-gradient(89.62deg, #0500fa 7.09%, #e01e5a 92.23%)"};
+
+  border: ${({ props }) => (props === true ? "1px solid #ffffff" : "")};
+
+  cursor: ${({ props }) => (props === true ? "" : "pointer")};
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;

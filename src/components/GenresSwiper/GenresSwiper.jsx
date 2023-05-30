@@ -1,25 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { getMovieByGenre } from '../../APIs/GetMoviesLists';
 import { moviesByGenres } from '../../Redux/Slices/MoviesByGenreSlice';
 import MainCard from '../MainCard/MainCard';
 import ScrollToTop from '../ScrollToTop';
-import { useParams } from 'react-router-dom';
-import { getGenres } from '../../APIs/GetMoviesLists';
 import { Plug } from './GenresSwiper.styled';
 
 const GenresSwiper = () => {
     const moviesByGenresSel = useSelector(moviesByGenres)
-
-    const { movieId } = useParams()
-
-
 
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -43,12 +36,7 @@ const GenresSwiper = () => {
         };
     }
 
-    const dispatch = useDispatch()
-
     useEffect(() => {
-        dispatch(getGenres())
-        dispatch(getMovieByGenre(movieId))
-
         const handleResize = debounce(() => {
             setScreenWidth(window.innerWidth);
         }, 300);
@@ -59,8 +47,7 @@ const GenresSwiper = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-
-    }, [dispatch, movieId]);
+    }, []);
 
 
     return (<>
@@ -104,7 +91,7 @@ const GenresSwiper = () => {
                 </div>
             </Swiper> :
 
-            <Plug>We haven't similar movies by genres</Plug>}
+            <Plug>We haven{'\u2019'}t similar movies by genres</Plug>}
 
     </>)
 }

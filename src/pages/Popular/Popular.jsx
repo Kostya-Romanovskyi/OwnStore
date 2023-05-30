@@ -13,7 +13,6 @@ const Popular = () => {
     const dispatch = useDispatch()
 
     const popularInfotSel = useSelector(popularMoviesFull)
-    console.log(location)
 
     useEffect(() => {
         dispatch(setPath(location))
@@ -22,7 +21,7 @@ const Popular = () => {
     return (<>
         <MainContainer>
             <PopularMovies>Popular movies</PopularMovies>
-            <FullLayoutMovies state={location} categoryInfo={popularInfotSel} fetchMovies={getPopularMovies} />
+            <FullLayoutMovies categoryInfo={popularInfotSel} fetchMovies={getPopularMovies} />
         </MainContainer>
 
     </>)

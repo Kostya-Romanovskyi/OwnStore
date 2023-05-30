@@ -5,13 +5,11 @@ import { setPath } from "../../Redux/Slices/PathSlice"
 import FullLayoutMovies from "../../components/FullLayoutMovies/FullLayoutMovies";
 import { getTrandingMovies } from "../../APIs/GetMoviesLists";
 import ScrollToTop from "../../components/ScrollToTop";
-import { trandingMoviesFull, trandingMoviesLoading } from "../../Redux/Slices/TrandingMoviesSlice";
+import { trandingMoviesFull } from "../../Redux/Slices/TrandingMoviesSlice";
 import { MainContainer, TrendingMovies } from "./Trending.styled";
-import { CircleLoader } from "react-spinners"
 
 const Trending = () => {
     const trendingInfoSel = useSelector(trandingMoviesFull);
-    const trendingLoading = useSelector(trandingMoviesLoading);
 
     const location = useLocation()
     const dispatch = useDispatch()
@@ -21,27 +19,18 @@ const Trending = () => {
     }, [dispatch, location])
 
     return (
-        <>
-            {!trendingLoading ? <MainContainer>
-                <ScrollToTop />
+        <MainContainer>
 
-                <TrendingMovies>Trending movies</TrendingMovies>
+            <ScrollToTop />
 
-                <FullLayoutMovies
-                    categoryInfo={trendingInfoSel}
-                    fetchMovies={getTrandingMovies}
-                />
+            <TrendingMovies>Trending movies</TrendingMovies>
 
-            </MainContainer>
-                :
-                <CircleLoader
-                    color="#8b36d6"
-                    cssOverride={{ margin: '0 auto' }}
-                    loading
-                    size={70}
-                />}
+            <FullLayoutMovies
+                categoryInfo={trendingInfoSel}
+                fetchMovies={getTrandingMovies}
+            />
 
-        </>
+        </MainContainer>
     );
 };
 export default Trending;

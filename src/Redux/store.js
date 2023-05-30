@@ -14,6 +14,7 @@ import imagesSlice from "./Slices/ImagesSlice";
 import videosSlice from "./Slices/VideosSlice";
 import nowPlaingSlice from "./Slices/NowPlaingSlice";
 import moviesByGenreSlice from "./Slices/MoviesByGenreSlice";
+import librarySlice from "./Slices/LibrarySlice";
 
 export default configureStore({
   reducer: {
@@ -31,6 +32,7 @@ export default configureStore({
     videos: videosSlice,
     nowPlaing: nowPlaingSlice,
     moviesByGenre: moviesByGenreSlice,
+    library: librarySlice,
   },
   middleware: [thunk],
 });

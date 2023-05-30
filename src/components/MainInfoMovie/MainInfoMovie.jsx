@@ -4,58 +4,57 @@ import { pathBack } from "../../Redux/Slices/PathSlice"
 import PosterError from '../../assets/ErrorPoster.jpg'
 import { movieById } from "../../Redux/Slices/MovieById"
 import MainButton from "../MainButton/MainButton"
-import { getImagesById } from "../../APIs/GetById"
-import { TitleWrapp, BackButton, Title, Status, ImgMobile, OverviewStyled, MobileButtons, Img, GenresList, GenresItem, GenresText, PosterWrapper } from "./MainInfoMovie.styled"
+import { TitleWrapp, BackButton, Title, Status, ImgMobile, OverviewStyled, MobileButtons, StyledButton, ButtonsContainer, Img, GenresList, GenresItem, GenresText, PosterWrapper } from "./MainInfoMovie.styled"
 import { useEffect, useState } from "react"
 import { imagesEl } from "../../Redux/Slices/ImagesSlice"
 import TrailerModal from "../Modal/Modal"
+import { libraryEl } from "../../Redux/Slices/LibrarySlice"
+import { addMovie, deleteMovie } from "../../APIs/LibraryAPI"
+import GallerysSwiper from "../GallerysSwiper/GellarysSwiper"
 
-import { FreeMode, Navigation, Thumbs } from "swiper";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
 
 const MainInfoMovie = () => {
+    const [addBtn, setAddBtn] = useState(false)
+    const [deleteBtn, setDeleteBtn] = useState(true)
+
     const { movieId } = useParams()
-    const { title, status, genres, poster_path, overview } = useSelector(movieById)
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const { title, status, genres, poster_path, overview, vote_average, release_date } = useSelector(movieById)
+    const test = useSelector(movieById)
+    console.log(test)
 
     const dispatch = useDispatch()
-    console.log(status)
+
+    const librarySel = useSelector(libraryEl)
 
     const location = useLocation()
     const backPath = useSelector(pathBack)
-    const imageSel = useSelector(imagesEl)
-
-    const debounce = (func, delay) => {
-        let timeoutId;
-
-        return function (...args) {
-            clearTimeout(timeoutId);
-
-            timeoutId = setTimeout(() => {
-                func.apply(this, args);
-            }, delay);
-        };
-    }
+    const imagesSel = useSelector(imagesEl)
 
     useEffect(() => {
-        dispatch(getImagesById(movieId))
+        librarySel.library && librarySel.library.map((movie) => {
+            if (movieId === movie.movieId) {
+                setAddBtn(movie.inLibrary)
+                setDeleteBtn(false)
+            }
+        })
+    }, [librarySel.library, movieId])
 
-        const handleResize = debounce(() => {
-            setScreenWidth(window.innerWidth);
-        }, 300);
 
+    const handleAddMovie = () => {
+        dispatch(addMovie({ title, status, genres, poster_path, overview, movieId, vote_average, release_date, inLibrary: true }))
+        setDeleteBtn(false)
+    }
 
-        window.addEventListener('resize', handleResize);
+    const handleDeleteMovie = () => {
+        librarySel.library && librarySel.library.map((movie) => {
+            if (movieId === movie.movieId) {
+                dispatch(deleteMovie(movie.id))
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [dispatch, genres, movieId])
+                setAddBtn(false)
+                setDeleteBtn(true)
+            }
+        })
+    }
 
     return (<>
 
@@ -78,59 +77,14 @@ const MainInfoMovie = () => {
             <OverviewStyled>{overview}</OverviewStyled>
 
             <MobileButtons>
-                <button type="button">add</button>
-                <button type="button">delete</button>
+                <StyledButton onClick={handleAddMovie} props={addBtn} disabled={addBtn} type="button">add in library</StyledButton>
+                <StyledButton onClick={handleDeleteMovie} props={deleteBtn} disabled={deleteBtn} type="button">delete from library</StyledButton>
             </MobileButtons>
 
 
             <TrailerModal />
 
-            <div style={{ width: screenWidth < 1200 ? (screenWidth < 767 ? 320 : 385) : "100%", marginBottom: screenWidth > 1200 ? 60 : 0 }}>
-
-                <Swiper style={{
-                    "--swiper-navigation-color": "#fff",
-                    "--swiper-pagination-color": "#fff",
-                    height: screenWidth < 1200 ? 175 : 290
-                }}
-                    loop={true}
-                    spaceBetween={100}
-                    navigation={true}
-                    thumbs={{ swiper: thumbsSwiper }}
-                    modules={[FreeMode, Navigation, Thumbs]}
-                    className="mySwiper2"
-                >
-                    {imageSel && imageSel.map(({ file_path, vote_count
-                    }) => {
-                        return (
-
-                            <SwiperSlide key={file_path} style={{ height: '100%' }}>
-                                <img src={`https://image.tmdb.org/t/p/w500${file_path}`} style={{ width: '78%', height: 'auto' }} alt={vote_count} />
-                            </SwiperSlide>)
-                    })}
-
-                </Swiper>
-
-                <Swiper
-                    style={{ height: 56, marginBottom: 20 }}
-                    onSwiper={setThumbsSwiper}
-                    loop={true}
-                    spaceBetween={0}
-                    slidesPerView={4}
-                    freeMode={true}
-                    watchSlidesProgress={true}
-                    modules={[FreeMode, Navigation, Thumbs]}
-                    className="mySwiper"
-                >
-                    {imageSel && imageSel.map(({ file_path, vote_count
-                    }) => {
-                        return (
-
-                            <SwiperSlide key={file_path}>
-                                <img src={`https://image.tmdb.org/t/p/w500${file_path}`} style={{ width: '74%', height: 'auto' }} alt={vote_count} />
-                            </SwiperSlide>)
-                    })}
-                </Swiper>
-            </div>
+            <GallerysSwiper images={imagesSel} />
 
             <MainButton route={`/search/${movieId}/cast`} content={'Cast'} state={{ from: location }} />
             <MainButton route={`/search/${movieId}/reviews`} content={'Reviews'} />
@@ -139,8 +93,10 @@ const MainInfoMovie = () => {
 
         <PosterWrapper>
             <Img src={poster_path !== null ? `https://image.tmdb.org/t/p/w500${poster_path}` : PosterError} alt={title} />
-            <button type="button">add</button>
-            <button type="button">delete</button>
+            <ButtonsContainer>
+                <StyledButton onClick={handleAddMovie} props={addBtn} disabled={addBtn} type="button">add in library</StyledButton>
+                <StyledButton onClick={handleDeleteMovie} props={deleteBtn} disabled={deleteBtn} type="button">delete from library</StyledButton>
+            </ButtonsContainer>
         </PosterWrapper>
 
     </>)
