@@ -31,7 +31,7 @@ const Movie = ({ pathCast }) => {
         dispatch(getImagesById(movieId))
         dispatch(fetchMovies())
         dispatch(getGenres())
-        getMovieByGenre(movieId)
+        dispatch(getMovieByGenre(movieId))
 
     }, [pathCast, dispatch, location, movieId])
 
