@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom"
 import { MainContainer, PopularMovies } from "./Popular.styled"
 import { useEffect } from "react"
 import { setPath } from "../../Redux/Slices/PathSlice"
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn"
 
 
 const Popular = () => {
@@ -22,6 +23,8 @@ const Popular = () => {
         <MainContainer>
             <PopularMovies>Popular movies</PopularMovies>
             <FullLayoutMovies categoryInfo={popularInfotSel} fetchMovies={getPopularMovies} />
+
+            <ScrollTopBtn />
         </MainContainer>
 
     </>)

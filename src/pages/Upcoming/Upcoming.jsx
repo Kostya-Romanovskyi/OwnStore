@@ -7,6 +7,7 @@ import { getUpcomingMovies } from "../../APIs/GetMoviesLists";
 import ScrollToTop from "../../components/ScrollToTop";
 import { upcomingMoviesFull } from "../../Redux/Slices/UpcomingMoviesSlice";
 import { MainContainer, UpcomingMovies } from "./Upcoming.styled";
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
 
 const Upcoming = () => {
     const upcomingInfoSel = useSelector(upcomingMoviesFull);
@@ -29,6 +30,8 @@ const Upcoming = () => {
                     categoryInfo={upcomingInfoSel}
                     fetchMovies={getUpcomingMovies}
                 />
+
+                <ScrollTopBtn />
             </MainContainer>
         </>
     );

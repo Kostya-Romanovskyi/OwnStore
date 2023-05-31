@@ -25,7 +25,7 @@ const ActorsList = () => {
                     <Name>{truncateString(name, 10)}</Name>
                     <TextWrapp>
                         <Duty>Duty:<br />{known_for_department}</Duty>
-                        <Popularity>Popularity:<br />{popularity}</Popularity>
+                        <Popularity>Popularity:<br />{popularity.toFixed(1)}</Popularity>
                     </TextWrapp>
                     <Character>Character: {character}</Character>
                 </Item>

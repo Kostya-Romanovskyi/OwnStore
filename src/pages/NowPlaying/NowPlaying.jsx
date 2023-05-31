@@ -7,6 +7,7 @@ import { MainContainer, NowPlayingMovies } from "./NowPlaying.styled"
 import { useEffect } from "react"
 import { setPath } from "../../Redux/Slices/PathSlice"
 import ScrollToTop from "../../components/ScrollToTop"
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn"
 
 
 const NowPlaying = () => {
@@ -24,6 +25,8 @@ const NowPlaying = () => {
             <ScrollToTop />
             <NowPlayingMovies>Now Playing movies</NowPlayingMovies>
             <FullLayoutMovies categoryInfo={nowPlayingInfotSel} fetchMovies={getNowPlaying} />
+
+            <ScrollTopBtn />
         </MainContainer>
     </>)
 }

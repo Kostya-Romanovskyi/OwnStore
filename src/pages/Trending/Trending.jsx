@@ -7,6 +7,7 @@ import { getTrandingMovies } from "../../APIs/GetMoviesLists";
 import ScrollToTop from "../../components/ScrollToTop";
 import { trandingMoviesFull } from "../../Redux/Slices/TrandingMoviesSlice";
 import { MainContainer, TrendingMovies } from "./Trending.styled";
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
 
 const Trending = () => {
     const trendingInfoSel = useSelector(trandingMoviesFull);
@@ -30,6 +31,7 @@ const Trending = () => {
                 fetchMovies={getTrandingMovies}
             />
 
+            <ScrollTopBtn />
         </MainContainer>
     );
 };

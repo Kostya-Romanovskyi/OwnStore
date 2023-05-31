@@ -4,7 +4,7 @@ import { pathBack } from "../../Redux/Slices/PathSlice"
 import PosterError from '../../assets/ErrorPoster.jpg'
 import { movieById } from "../../Redux/Slices/MovieById"
 import MainButton from "../MainButton/MainButton"
-import { TitleWrapp, BackButton, Title, Status, ImgMobile, OverviewStyled, MobileButtons, StyledButton, ButtonsContainer, Img, GenresList, GenresItem, GenresText, PosterWrapper } from "./MainInfoMovie.styled"
+import { TitleWrapp, BackButton, Title, Status, ImgMobile, OverviewStyled, MobileButtons, StyledButton, ButtonsContainer, Img, GenresList, GenresItem, GenresText, PosterWrapper, Plug } from "./MainInfoMovie.styled"
 import { useEffect, useState } from "react"
 import { imagesEl } from "../../Redux/Slices/ImagesSlice"
 import TrailerModal from "../Modal/Modal"
@@ -63,7 +63,7 @@ const MainInfoMovie = () => {
             <Title>{title}</Title>
             <Status props={status}>{status}</Status>
 
-            <ImgMobile src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+            <ImgMobile src={poster_path !== null ? `https://image.tmdb.org/t/p/w500${poster_path}` : PosterError} alt={title} />
 
             <GenresList>
                 {genres && genres.map(({ id, name }) => {
@@ -84,7 +84,7 @@ const MainInfoMovie = () => {
 
             <TrailerModal />
 
-            <GallerysSwiper images={imagesSel} />
+            {imagesSel && imagesSel.length !== 0 ? <GallerysSwiper images={imagesSel} /> : <Plug>We haven`t images off this movies</Plug>}
 
             <MainButton route={`/search/${movieId}/cast`} content={'Cast'} state={{ from: location }} />
             <MainButton route={`/search/${movieId}/reviews`} content={'Reviews'} />

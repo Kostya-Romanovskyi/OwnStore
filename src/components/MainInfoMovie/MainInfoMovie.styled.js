@@ -15,9 +15,13 @@ export const TitleWrapp = styled.div`
   @media screen and (min-width: 768px) {
     align-items: flex-start;
 
-    width: 50%;
+    width: 90%;
 
     margin-bottom: 45px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 50%;
   }
 `;
 
@@ -160,7 +164,7 @@ export const Img = styled.img`
   }
 
   @media screen and (min-width: 1200px) {
-    width: 100%;
+    width: 402px;
     height: auto;
   }
 `;
@@ -217,4 +221,26 @@ export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+`;
+
+export const Plug = styled.p`
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 2rem;
+
+  letter-spacing: -0.014em;
+
+  padding: 40px;
+
+  margin-bottom: 40px;
+
+  background: linear-gradient(89.62deg, #06045b 7.09%, #e01e5a 92.23%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @media screen and (min-width: 768px) {
+    font-size: 3rem;
+  }
 `;

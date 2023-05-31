@@ -7,6 +7,7 @@ import { getTopRatedMovies } from "../../APIs/GetMoviesLists"
 import ScrollToTop from "../../components/ScrollToTop"
 import { topRatedMoviesFull } from "../../Redux/Slices/TopRatedMoviesSlice"
 import { MainContainer, TopRatedMovies } from './TopRated.styled'
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn"
 
 const TopRated = () => {
     const location = useLocation()
@@ -27,6 +28,7 @@ const TopRated = () => {
 
             <FullLayoutMovies categoryInfo={topRatedInfoSel} fetchMovies={getTopRatedMovies} />
 
+            <ScrollTopBtn />
         </MainContainer>
     </>)
 }
