@@ -3,6 +3,7 @@ import ErrorPoster from '../../assets/ErrorPoster.jpg'
 import { Item, Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./LibraryCard.styled";
 
 const LibraryCard = ({ id, title, poster, vote, date, genre }) => {
+
     const truncateString = (str, maxLength) => {
         if (str.length > maxLength) {
             return str.substring(0, maxLength) + "...";
@@ -21,7 +22,7 @@ const LibraryCard = ({ id, title, poster, vote, date, genre }) => {
                 </FlexWrapp>
                 <FlexWrapp>
                     <Statistic>{date}</Statistic>
-                    <Statistic>{genre[0].name}</Statistic>
+                    <Statistic>{genre && genre[0]?.name}</Statistic>
                 </FlexWrapp>
                 <Button to={`/search/${id}`} >film page</Button>
             </Container>

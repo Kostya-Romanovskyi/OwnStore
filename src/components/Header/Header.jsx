@@ -65,7 +65,7 @@ const Header = () => {
                                 <NavItem>
                                     <NavLink onClick={handleToggle} to="/about"
                                         style={{ color: pathname === '/about' ? "#ffffff" : "#c0c0c0" }}>
-                                        About us
+                                        About me
                                     </NavLink>
                                 </NavItem>
                             </NavList>

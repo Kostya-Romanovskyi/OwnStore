@@ -3,7 +3,7 @@ import LibraryCard from '../LibraryCard/LibraryCard';
 import { List } from "./LibraryList.styled"
 
 const LibraryList = ({ libraryList }) => {
-
+    console.log(libraryList)
     return (<List>
 
         {libraryList && libraryList.map(({ movieId, title, poster_path, vote_average, release_date, genres }) => {

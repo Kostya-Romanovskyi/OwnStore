@@ -5,9 +5,8 @@ import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
 import Search from './pages/Search/Search'
 import Movie from './pages/Movie/Movie'
-import Favorite from './pages/Favorite'
 import Library from './pages/Library/Library'
-import About from './pages/About'
+import About from './pages/About/About'
 import Cast from './pages/Cast/Cast'
 import Reviews from './pages/Reviews/Reviews'
 import Popular from './pages/Popular/Popular'
@@ -44,8 +43,6 @@ function App() {
                     <Route path="/trending" element={<Trending />} />
 
                     <Route path="/nowplaying" element={<NowPlaying />} />
-
-                    <Route path="/favorite" element={<Favorite />} />
 
                     <Route path="/library" element={<Library />} />
 
