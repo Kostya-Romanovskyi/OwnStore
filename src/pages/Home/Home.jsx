@@ -16,6 +16,8 @@ import { popularMoviesLoading } from "../../Redux/Slices/PopularMoviesSlice"
 import { upcomingMoviesLoading } from "../../Redux/Slices/UpcomingMoviesSlice"
 import { topRatedMoviesLoading } from "../../Redux/Slices/TopRatedMoviesSlice"
 import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn"
+import { fetchFirebaseData } from "../../APIs/LibraryAPI"
+import { authInfo } from "../../Redux/Slices/AuthSlice"
 
 
 const Home = () => {
@@ -27,6 +29,8 @@ const Home = () => {
     const TopRatedLoading = useSelector(upcomingMoviesLoading)
     const nowPlayingLoading = useSelector(topRatedMoviesLoading)
 
+    const authSel = useSelector(authInfo)
+
     const location = useLocation()
 
 
@@ -36,7 +40,11 @@ const Home = () => {
         dispatch(getGenres())
 
         dispatch(setPath(location))
-    }, [dispatch, location])
+        if (authSel.isLoggedIn) {
+            dispatch(fetchFirebaseData(authSel.uid))
+        }
+
+    }, [authSel.isLoggedIn, authSel.uid, dispatch, location])
 
     return (
         <main>

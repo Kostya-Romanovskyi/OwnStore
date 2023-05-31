@@ -1,7 +1,5 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchMovies } from "../../APIs/LibraryAPI"
-import { libraryEl } from "../../Redux/Slices/LibrarySlice"
 import { MainContainer, Plug } from "./Library.styled"
 import LibraryList from "../../components/LibraryList/LibraryList"
 import { getGenres } from "../../APIs/GetMoviesLists"
@@ -9,27 +7,35 @@ import { setPath } from "../../Redux/Slices/PathSlice"
 import { useLocation } from "react-router-dom"
 import { CircleLoader } from "react-spinners"
 import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn"
+import { authInfo } from "../../Redux/Slices/AuthSlice"
+import { fetchFirebaseData } from "../../APIs/LibraryAPI"
+import { firebaseLibrary } from "../../Redux/Slices/FireBaseLibrarySlice"
 
 
 const Library = () => {
+
     const dispatch = useDispatch()
     const location = useLocation()
-    const librarySel = useSelector(libraryEl)
+    const authInfoSel = useSelector(authInfo)
+    const librarySel = useSelector(firebaseLibrary)
 
     useEffect(() => {
-        dispatch(fetchMovies())
+        dispatch(fetchFirebaseData(authInfoSel.uid))
         dispatch(getGenres())
         dispatch(setPath(location))
-    }, [dispatch, location])
+
+    }, [authInfoSel.uid, dispatch, location])
+
 
 
     return (<main>
+
         <MainContainer className="app">
 
-            {!librarySel.isLoading ?
+            {authInfoSel.isLoggedIn ? !librarySel.isLoading ?
                 <>
-                    {librarySel.library && librarySel.library.length !== 0 ?
-                        <LibraryList libraryList={librarySel.library} />
+                    {librarySel.data && librarySel.data.length !== 0 ?
+                        <LibraryList libraryList={librarySel.data} />
                         :
                         <Plug>You haven`t movice in your library</Plug>}
                 </>
@@ -39,10 +45,13 @@ const Library = () => {
                     cssOverride={{ margin: '0 auto' }}
                     loading
                     size={70}
-                />}
+                /> : <Plug>You need to logged in for added movies in library</Plug>}
+
 
             <ScrollTopBtn />
+
         </MainContainer>
+
     </main>)
 }
 

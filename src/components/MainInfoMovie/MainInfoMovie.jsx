@@ -8,9 +8,13 @@ import { TitleWrapp, BackButton, Title, Status, ImgMobile, OverviewStyled, Mobil
 import { useEffect, useState } from "react"
 import { imagesEl } from "../../Redux/Slices/ImagesSlice"
 import TrailerModal from "../Modal/Modal"
-import { libraryEl } from "../../Redux/Slices/LibrarySlice"
-import { addMovie, deleteMovie } from "../../APIs/LibraryAPI"
+
 import GallerysSwiper from "../GallerysSwiper/GellarysSwiper"
+import { addFirebaseData, deleteFirebaseData } from "../../APIs/LibraryAPI"
+import { firebaseLibrary } from "../../Redux/Slices/FireBaseLibrarySlice"
+import { fetchFirebaseData } from "../../APIs/LibraryAPI"
+import { authInfo } from "../../Redux/Slices/AuthSlice"
+
 
 
 const MainInfoMovie = () => {
@@ -19,39 +23,50 @@ const MainInfoMovie = () => {
 
     const { movieId } = useParams()
     const { title, status, genres, poster_path, overview, vote_average, release_date } = useSelector(movieById)
-    const test = useSelector(movieById)
-    console.log(test)
+
 
     const dispatch = useDispatch()
 
-    const librarySel = useSelector(libraryEl)
+    const librarySel = useSelector(firebaseLibrary)
+
+    const authInfoSel = useSelector(authInfo)
 
     const location = useLocation()
     const backPath = useSelector(pathBack)
     const imagesSel = useSelector(imagesEl)
 
     useEffect(() => {
-        librarySel.library && librarySel.library.map((movie) => {
+        librarySel.data && librarySel.data.map((movie) => {
             if (movieId === movie.movieId) {
+                console.log(movie.inLibrary)
                 setAddBtn(movie.inLibrary)
                 setDeleteBtn(false)
             }
         })
-    }, [librarySel.library, movieId])
+    }, [authInfoSel.uid, dispatch, librarySel.data, movieId])
 
+    useEffect(() => {
+        dispatch(fetchFirebaseData(authInfoSel.uid))
+
+    }, [authInfoSel.uid, dispatch])
 
     const handleAddMovie = () => {
-        dispatch(addMovie({ title, status, genres, poster_path, overview, movieId, vote_average, release_date, inLibrary: true }))
+        dispatch(addFirebaseData({ uid: authInfoSel.uid, movie: { title, status, genres, poster_path, overview, movieId, vote_average, release_date, inLibrary: true } }))
         setDeleteBtn(false)
+        dispatch(fetchFirebaseData(authInfoSel.uid))
     }
 
     const handleDeleteMovie = () => {
-        librarySel.library && librarySel.library.map((movie) => {
-            if (movieId === movie.movieId) {
-                dispatch(deleteMovie(movie.id))
+
+        librarySel.data && librarySel.data.map((oneMovie) => {
+
+            if (movieId === oneMovie.movieId) {
+                dispatch(deleteFirebaseData({ uid: authInfoSel.uid, id: oneMovie.id }))
 
                 setAddBtn(false)
                 setDeleteBtn(true)
+
+                dispatch(fetchFirebaseData(authInfoSel.uid))
             }
         })
     }
@@ -93,10 +108,14 @@ const MainInfoMovie = () => {
 
         <PosterWrapper>
             <Img src={poster_path !== null ? `https://image.tmdb.org/t/p/w500${poster_path}` : PosterError} alt={title} />
-            <ButtonsContainer>
-                <StyledButton onClick={handleAddMovie} props={addBtn} disabled={addBtn} type="button">add in library</StyledButton>
-                <StyledButton onClick={handleDeleteMovie} props={deleteBtn} disabled={deleteBtn} type="button">delete from library</StyledButton>
-            </ButtonsContainer>
+
+            {authInfoSel.isLoggedIn ?
+                <ButtonsContainer>
+                    <StyledButton onClick={handleAddMovie} props={addBtn} disabled={addBtn} type="button">add in library</StyledButton>
+                    <StyledButton onClick={handleDeleteMovie} props={deleteBtn} disabled={deleteBtn} type="button">delete from library</StyledButton>
+                </ButtonsContainer> : ''
+            }
+
         </PosterWrapper>
 
     </>)

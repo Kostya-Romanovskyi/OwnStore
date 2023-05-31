@@ -8,7 +8,6 @@ import { Section, List, Title, WatchAllLink } from "./TrendingList.styled"
 const TrendingList = () => {
     const dispatch = useDispatch()
     const trendingListSel = useSelector(trandingMovies)
-    console.log(trendingListSel)
 
     const nineElements = trendingListSel && trendingListSel.slice(3, 12)
 

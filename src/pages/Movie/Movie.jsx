@@ -5,7 +5,6 @@ import { useLocation, useParams } from "react-router-dom"
 import { getMovieById, getVideosById, getImagesById } from "../../APIs/GetById"
 import { movieByIdLoading } from '../../Redux/Slices/MovieById';
 import { CircleLoader } from "react-spinners"
-import { fetchMovies } from '../../APIs/LibraryAPI';
 import { getGenres } from '../../APIs/GetMoviesLists';
 import { getMovieByGenre } from '../../APIs/GetMoviesLists';
 
@@ -29,7 +28,6 @@ const Movie = ({ pathCast }) => {
         dispatch(getMovieById(movieId))
         dispatch(getVideosById(movieId))
         dispatch(getImagesById(movieId))
-        dispatch(fetchMovies())
         dispatch(getGenres())
         dispatch(getMovieByGenre(movieId))
 

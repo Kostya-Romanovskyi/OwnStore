@@ -14,22 +14,36 @@ import {
     Navigation,
     BurgerButton,
     NavLink,
-    AuthWrapp,
-    AuthLogIn,
-    AuthRegister
+    LogOut,
+    StyledWrapp,
+    UsersName
 } from "../Header/Header.styled";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { TfiClose } from 'react-icons/tfi';
 import { useLocation } from "react-router-dom";
+import { authInfo } from "../../Redux/Slices/AuthSlice";
+
+import SignIn from "../../Redux/Auth/SignIn";
+import { logOut } from "../../Redux/Slices/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { pathname } = useLocation()
+    const authInfoSel = useSelector(authInfo)
+    console.log(authInfoSel)
+    const dispatch = useDispatch()
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
+
+    const handleLogOut = () => {
+        dispatch(logOut())
+
+        localStorage.setItem('auth', '')
+    }
     return (
         <>
             <HeaderBackground>
@@ -71,12 +85,23 @@ const Header = () => {
                             </NavList>
 
                         </Navigation>
-                        <AuthWrapp>
-                            <AuthLogIn type="button">Log In</AuthLogIn>
-                            <AuthRegister type="button">Register</AuthRegister>
-                        </AuthWrapp>
+
+                        {authInfoSel.isLoggedIn ?
+                            <StyledWrapp>
+                                <UsersName>Hi,{authInfoSel.name}</UsersName>
+                                <LogOut onClick={handleLogOut}>LogOut</LogOut>
+                            </StyledWrapp>
+                            :
+
+
+                            <StyledWrapp>
+                                <SignIn />
+                            </StyledWrapp>
+
+                        }
 
                     </MobileWrapp>
+
                 </HeaderContainer>
             </HeaderBackground>
 

@@ -16,12 +16,11 @@ import { getGenres } from "../../APIs/GetMoviesLists";
 const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const query = searchParams.get('query') ?? "";
-    // const urlPage = searchParams.get('page') ?? "";
 
     const [currentPage, setCurrentPage] = useState(1)
 
     const location = useLocation()
-    console.log(location)
+
 
     const searchMovieSel = useSelector(searchMoviesFull)
 
@@ -41,17 +40,6 @@ const Search = () => {
         setCurrentPage(page);
 
         window.scrollTo(0, 0);
-
-        // setCurrentPage(() => {
-        //     const newPage = page;
-
-        //     window.scrollTo(0, 0);
-
-        //     setSearchParams({ query: query, page: newPage });
-
-        //     return newPage;
-        // });
-
     };
 
     const handleResponse = (e) => {
@@ -62,7 +50,6 @@ const Search = () => {
         }
 
         dispatch(getMoviesSearch({ currentPage, query }))
-        // setSearchParams({ query: query, page: currentPage });
     }
 
     useEffect(() => {

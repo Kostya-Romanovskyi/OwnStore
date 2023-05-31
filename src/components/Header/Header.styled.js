@@ -189,7 +189,7 @@ export const AuthWrapp = styled.div`
   justify-content: center;
 `;
 
-export const AuthLogIn = styled.button`
+export const LogOut = styled.button`
   padding: 8px 16px;
   margin-right: 10px;
 
@@ -242,5 +242,35 @@ export const AuthRegister = styled.button`
   &:focus {
     box-shadow: 0px 0px 20px 5px rgba(5, 0, 250, 0.5),
       0px 0px 20px 5px rgba(224, 30, 90, 0.5);
+  }
+`;
+
+export const StyledWrapp = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const UsersName = styled.p`
+  color: #ffffff;
+
+  margin-right: 10px;
+
+  @media screen and (min-width: 768px) {
+    width: 110px;
+
+    font-size: 1.2rem;
+
+    margin-right: 20px;
+
+    text-align: right;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 100%;
+    font-size: 1.2rem;
+
+    margin-right: 10px;
+
+    text-align: right;
   }
 `;

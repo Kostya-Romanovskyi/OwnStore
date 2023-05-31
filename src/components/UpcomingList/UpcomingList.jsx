@@ -15,7 +15,6 @@ const UpcomingList = () => {
     const upcomingLoading = useSelector(upcomingMoviesLoading)
 
     const threeEl = upcomingMoviesSel && upcomingMoviesSel.slice(7, 10)
-    console.log(threeEl)
 
     const truncateString = (str, maxLength) => {
         if (str.length > maxLength) {

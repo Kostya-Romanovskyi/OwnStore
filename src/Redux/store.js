@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
+import authSlice from "./Slices/AuthSlice";
 import popularMoviesSlice from "./Slices/PopularMoviesSlice";
 import upcomingMoviesSlice from "./Slices/UpcomingMoviesSlice";
 import topRatedMoviesSlice from "./Slices/TopRatedMoviesSlice";
@@ -15,9 +16,11 @@ import videosSlice from "./Slices/VideosSlice";
 import nowPlaingSlice from "./Slices/NowPlaingSlice";
 import moviesByGenreSlice from "./Slices/MoviesByGenreSlice";
 import librarySlice from "./Slices/LibrarySlice";
+import fireBaseLibrarySlice from "./Slices/FireBaseLibrarySlice";
 
 export default configureStore({
   reducer: {
+    auth: authSlice,
     popularMovies: popularMoviesSlice,
     upcomingMovies: upcomingMoviesSlice,
     topRatedMovies: topRatedMoviesSlice,
@@ -33,6 +36,7 @@ export default configureStore({
     nowPlaing: nowPlaingSlice,
     moviesByGenre: moviesByGenreSlice,
     library: librarySlice,
+    fireBaseLibrary: fireBaseLibrarySlice,
   },
   middleware: [thunk],
 });

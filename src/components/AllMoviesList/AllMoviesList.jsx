@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 
 const AllMoviesList = ({ categoryInfo }) => {
     const location = useLocation()
-    console.log(location)
 
     return (
         <GridList>
