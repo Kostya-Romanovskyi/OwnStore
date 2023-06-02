@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { getTopRatedMovies } from "../../APIs/GetMoviesLists"
-import { topRatedMoviesFull } from "../../Redux/Slices/TopRatedMoviesSlice";
 import { useDispatch, useSelector } from "react-redux"
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { getTopRatedMovies } from "../../APIs/GetMoviesLists"
+import { topRatedMoviesFull } from "../../Redux/Slices/TopRatedMoviesSlice";
 import MainCard from "../MainCard/MainCard";
 import { MainContainer, GridList, Item } from "./FullTopRatedList.styled";
 

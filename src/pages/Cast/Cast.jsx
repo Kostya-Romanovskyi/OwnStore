@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect } from "react"
+import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { castByIdLoading } from '../../Redux/Slices/CastById';
 import { CircleLoader } from "react-spinners"
-
 import { getCastById } from "../../APIs/GetById"
-import { useParams } from "react-router-dom"
 import ActorsList from "../../components/ActorsList/ActorsList"
 import { MainContainer, BackLink } from "./Cast.styled"
 import ScrollToTop from "../../components/ScrollToTop"

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
-import { getTrandingMovies } from "../../APIs/GetMoviesLists"
 import { useDispatch, useSelector } from "react-redux"
+import { getTrandingMovies } from "../../APIs/GetMoviesLists"
 import { trandingMovies } from "../../Redux/Slices/TrandingMoviesSlice"
 import LittleCard from "../LittleCard/LittleCard"
 import { Section, List, Title, WatchAllLink } from "./TrendingList.styled"

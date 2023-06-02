@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import MainCard from "../MainCard/MainCard"
 import { GridList, Item } from "./AllMoviesList.styled"
-import { useLocation } from 'react-router-dom';
+
 
 const AllMoviesList = ({ categoryInfo }) => {
     const location = useLocation()

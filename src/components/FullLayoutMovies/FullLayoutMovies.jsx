@@ -1,26 +1,29 @@
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import Stack from '@mui/material/Stack';
 import PropTypes from 'prop-types';
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { useSearchParams } from "react-router-dom";
 import Pagination from '@mui/material/Pagination';
 import AllMoviesList from "../AllMoviesList/AllMoviesList";
 import { MainContainer, StyledStack } from "./FullLayoutMovies.styled";
 
 const FullLayoutMovies = ({ categoryInfo, fetchMovies }) => {
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const handlePageChange = (event, page) => {
-        console.log(page)
-        setCurrentPage(page);
-
-        window.scrollTo(0, 0);
-    };
+    const [searchParams, setSearchParams] = useSearchParams()
+    const pageUrl = searchParams.get('page') ?? 1;
 
     const dispatch = useDispatch()
 
+    const handlePageChange = (e) => {
+        window.scrollTo(0, 0);
+
+        setSearchParams({ page: +e.target.textContent });
+    };
+
     useEffect(() => {
-        dispatch(fetchMovies(currentPage))
-    }, [dispatch, currentPage, fetchMovies])
+        setSearchParams({ page: +pageUrl })
+
+        dispatch(fetchMovies(+pageUrl))
+
+    }, [dispatch, fetchMovies, pageUrl, setSearchParams])
 
     return (
         <main>
@@ -31,7 +34,7 @@ const FullLayoutMovies = ({ categoryInfo, fetchMovies }) => {
                 <StyledStack spacing={2} style={{ marginBottom: 20, alignItems: 'center', justifyContent: "center" }}>
                     <Pagination onChange={handlePageChange} count={categoryInfo.total_pages && categoryInfo.total_pages > 200 ?
                         300 :
-                        categoryInfo.total_pages} page={currentPage} variant="outlined" color="primary" />
+                        categoryInfo.total_pages} page={+pageUrl} variant="outlined" color="primary" />
                 </StyledStack>
 
             </MainContainer>

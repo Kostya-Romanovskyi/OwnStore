@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,7 +7,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-import { useEffect, useState } from "react";
+
 
 const GallerysSwiper = ({ images }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { CircleLoader } from "react-spinners"
 import { getReviewsById } from "../../APIs/GetById"
 import { useParams } from "react-router-dom"
 import { MainContainer, BackLink } from "./Reviews.styled"
 import ScrollToTop from "../../components/ScrollToTop"
 import ReviewsList from "../../components/ReviewsList/ReviewsList"
-import { CircleLoader } from "react-spinners"
 import { reviewsByIdLoading } from '../../Redux/Slices/ReviewsById';
 import ScrollTopBtn from '../../components/ScrollTopBtn/ScrollTopBtn';
 

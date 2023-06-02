@@ -1,5 +1,8 @@
-import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { TfiClose } from 'react-icons/tfi';
 import Logo from "../../assets/Logo.png";
 import {
     HeaderBackground,
@@ -18,21 +21,19 @@ import {
     StyledWrapp,
     UsersName
 } from "../Header/Header.styled";
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { TfiClose } from 'react-icons/tfi';
-import { useLocation } from "react-router-dom";
+
 import { authInfo } from "../../Redux/Slices/AuthSlice";
 
 import SignIn from "../../Redux/Auth/SignIn";
 import { logOut } from "../../Redux/Slices/AuthSlice";
-import { useDispatch, useSelector } from "react-redux";
+
 
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { pathname } = useLocation()
     const authInfoSel = useSelector(authInfo)
-    console.log(authInfoSel)
+
     const dispatch = useDispatch()
 
     const handleToggle = () => {

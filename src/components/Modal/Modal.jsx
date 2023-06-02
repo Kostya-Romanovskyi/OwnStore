@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AiOutlineClose } from 'react-icons/ai'
 import { Modal } from '@mui/material';
+import { FaPlay } from 'react-icons/fa'
 import YouTubeTrailer from '../YouTubeTrailer/YouTubeTrailer';
 import { ModalContainer, OpenButton, CloseButton, Plug, Wrapp } from './Modal.styled';
-import { FaPlay } from 'react-icons/fa'
-import { AiOutlineClose } from 'react-icons/ai'
 import { videosTrailer } from '../../Redux/Slices/VideosSlice';
-import { useSelector } from 'react-redux';
+
 
 
 

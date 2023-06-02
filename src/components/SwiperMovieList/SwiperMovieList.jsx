@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from "react"
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { CircleLoader } from "react-spinners"
 import MainCard from "../MainCard/MainCard";
 import { Section, PopularMovies, WatchAllLink } from "./SwiperMovieList.styled"
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperStyle.css'
-import { CircleLoader } from "react-spinners"
+
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper';

@@ -3,7 +3,6 @@ import { castById } from "../../Redux/Slices/CastById"
 import ErrorPhoto from '../../assets/ErrorPoster.jpg'
 import { List, Item, Photo, Name, TextWrapp, Duty, Popularity, Character, EmptyCast } from "./ActorsList.styled"
 
-
 const ActorsList = () => {
     const actorsListSel = useSelector(castById)
     console.log(actorsListSel.cast)

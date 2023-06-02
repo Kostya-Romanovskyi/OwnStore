@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import ErrorPoster from '../../assets/ErrorPoster.jpg'
 import { Poster, Container, FlexWrapp, TitleFilm, Statistic, Button } from "./MainCard.styled"
 import { genres } from "../../Redux/Slices/GenresSlice"
-import { useSelector } from 'react-redux';
+
 
 const MainCard = ({ id, title, poster, vote, date, genre }) => {
     const genresSel = useSelector(genres)

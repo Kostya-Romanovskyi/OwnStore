@@ -1,7 +1,8 @@
-import { videosTrailer } from '../../Redux/Slices/VideosSlice';
 import { useSelector } from 'react-redux';
 import ReactPlayer from 'react-player';
 import { useEffect, useState } from 'react';
+import { videosTrailer } from '../../Redux/Slices/VideosSlice';
+
 
 
 const YouTubeTrailer = () => {

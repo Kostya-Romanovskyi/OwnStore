@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useParams } from "react-router-dom"
+import { CircleLoader } from "react-spinners"
 import { getMovieById, getVideosById, getImagesById } from "../../APIs/GetById"
 import { movieByIdLoading } from '../../Redux/Slices/MovieById';
-import { CircleLoader } from "react-spinners"
 import { getGenres } from '../../APIs/GetMoviesLists';
 import { getMovieByGenre } from '../../APIs/GetMoviesLists';
-
 import ScrollToTop from "../../components/ScrollToTop"
 import MainInfoMovie from "../../components/MainInfoMovie/MainInfoMovie"
 import MoreInfoMovie from "../../components/MoreInfoMovie/MoreInfoMovie"

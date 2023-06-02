@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Poster, InfoWrapp, TitleWrapp, Title, LikeButton, StatWrapp, Date, Vote } from '../UpcomingList/UpcomingList.styled'
 import { CardWrapp, Item, StyledLink } from './LittleCard.styled'
 
-
 const LittleCard = ({ img, title, date, vote, id, language }) => {
 
     const truncateString = (str, maxLength) => {

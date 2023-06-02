@@ -1,10 +1,10 @@
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { getPopularMovies } from "../../APIs/GetMoviesLists"
 import FullLayoutMovies from "../../components/FullLayoutMovies/FullLayoutMovies"
 import { popularMoviesFull } from "../../Redux/Slices/PopularMoviesSlice"
-import { useLocation } from "react-router-dom"
 import { MainContainer, PopularMovies } from "./Popular.styled"
-import { useEffect } from "react"
 import { setPath } from "../../Redux/Slices/PathSlice"
 import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn"
 

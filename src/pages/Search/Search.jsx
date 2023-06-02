@@ -1,31 +1,27 @@
-import { useEffect, useState } from "react"
-import { getMoviesSearch } from "../../APIs/GetMoviesSearch"
-import { MainContainer, TitleStyled, StyledForm, CustomInput, SearchButton, StyledStack } from "./Search.styled"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import Pagination from '@mui/material/Pagination';
-import { searchMoviesFull } from "../../Redux/Slices/SearchMoviesSlice";
-import { useSearchParams } from "react-router-dom";
-import SearchList from "../../components/SearchList/SearchList";
+import { useSearchParams, useLocation } from "react-router-dom";
 import { TfiSearch } from 'react-icons/tfi'
-import { useLocation } from "react-router-dom"
+import Pagination from '@mui/material/Pagination';
+import { getMoviesSearch } from "../../APIs/GetMoviesSearch"
+import { getGenres } from "../../APIs/GetMoviesLists";
+import { searchMoviesFull } from "../../Redux/Slices/SearchMoviesSlice";
+import SearchList from "../../components/SearchList/SearchList";
 import { setPath } from "../../Redux/Slices/PathSlice"
 import ScrollToTop from "../../components/ScrollToTop";
 import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
-import { getGenres } from "../../APIs/GetMoviesLists";
+import { MainContainer, TitleStyled, StyledForm, CustomInput, SearchButton, StyledStack } from "./Search.styled"
 
 const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const query = searchParams.get('query') ?? "";
-
-    const [currentPage, setCurrentPage] = useState(1)
+    const pageUrl = searchParams.get('page') ?? 1;
 
     const location = useLocation()
-
 
     const searchMovieSel = useSelector(searchMoviesFull)
 
     const dispatch = useDispatch()
-
 
     const handleInputChange = (e) => {
 
@@ -36,10 +32,13 @@ const Search = () => {
         setSearchParams({ query: e.target.value.toLowerCase() });
     }
 
-    const handlePageChange = (e, page) => {
-        setCurrentPage(page);
-
+    const handlePageChange = (e) => {
         window.scrollTo(0, 0);
+
+        setSearchParams({ query: query, page: +e.target.textContent });
+
+        const data = { page: +e.target.textContent, query: query }
+        dispatch(getMoviesSearch(data))
     };
 
     const handleResponse = (e) => {
@@ -49,13 +48,18 @@ const Search = () => {
             return
         }
 
-        dispatch(getMoviesSearch({ currentPage, query }))
+        setSearchParams({ query: query, page: +pageUrl });
+
+        const data = { page: +pageUrl, query: query }
+        dispatch(getMoviesSearch(data))
+
     }
 
     useEffect(() => {
-        dispatch(getMoviesSearch({ currentPage, query }))
+        const data = { page: +pageUrl, query: query }
+        dispatch(getMoviesSearch(data))
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage, dispatch])
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(setPath(location))
@@ -81,7 +85,7 @@ const Search = () => {
 
             {searchMovieSel.results && searchMovieSel.results.length !== 0 ?
                 <StyledStack spacing={2} style={{ marginBottom: 20, alignItems: 'center', justifyContent: "center" }}>
-                    <Pagination onChange={handlePageChange} page={+currentPage} count={searchMovieSel.total_pages} variant="outlined" color="primary" />
+                    <Pagination onChange={handlePageChange} page={+pageUrl} count={searchMovieSel.total_pages} variant="outlined" color="primary" />
                 </StyledStack> :
                 ''}
             <ScrollTopBtn />
